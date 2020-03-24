@@ -207,22 +207,17 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }//GEN-LAST:event_TxtBaseDeDatosActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-      
-        if (ArchivoAbierto) {
-            System.out.println("Trabajando en un archivo abierto");
-            archiconfig.leer();
-            //GuardarFichero();
-        }
-        
+       
         if (Camposllenos()) {
             
             System.out.println("Creando Archivo Nuevo");
             CrearFicheroNuevo();
+            System.exit(0);
         
         }
-        System.out.println(Camposllenos());
-        if ( !ArchivoAbierto && !Camposllenos()) {
-            JOptionPane.showMessageDialog(null, "Debe abrir un archivo .ini o llenar los campos para guardarlo");
+      
+        if ( !Camposllenos()) {
+            JOptionPane.showMessageDialog(null, "Debe abrir un archivo config.ini o llenar los campos para guardarlo");
         }
         
         
@@ -235,7 +230,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     
     
     public boolean Camposllenos() {
-        return !(this.TxtUsuario.getText().equals("") || this.TxtBaseDeDatos.getText().equals("") || this.TxtContraseña.getText().equals("") || this.TxtServidor.getText().equals("")) ;
+        return !(this.TxtUsuario.getText().equals("") || this.TxtBaseDeDatos.getText().equals("") || this.TxtServidor.getText().equals("")) ;
         
     }
     
@@ -243,56 +238,39 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     
     public void CrearFicheroNuevo() {
   
-
-        FileCho = new JFileChooser();
-        // lo establece como que solo es un archivo
-        FileCho.setFileSelectionMode(0);
-        
-        //esto es para agregar el filtro de la extension en el jfile chooser al guardar
-        //  FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("TXT", "txt");
-        //   FileCho.setFileFilter(filtroImagen);
-//        FileCho.setDialogTitle("Guardar archivo " + this.LblNombre.getText());
-//        FileCho.setSelectedFile(new File(this.LblNombre.getText()));
-//        
-    
-           String ruta= (String.valueOf( ClassLoader.getSystemResource("archivoconfig/")).substring(6)) ;
-             System.out.println("aqui ruta:"+ruta);
+        String ruta= (String.valueOf( ClassLoader.getSystemResource("archivoconfig/")).substring(6)) ;
+        System.out.println("archivo creado ruta:"+ruta);
             
+        archivo = new File(ruta+"config.ini");
             
-         
-            archivo = new File(ruta+"config.ini");
-            
-            //this.LblNombre.setText(archivo.getName());
-            try {
+        try {
                 
-                
-           
-                //Si Existe el fichero lo borra
-                if (archivo.exists()) {
-                    System.out.println("el archivo existe");
-                    archivo.delete();
-                }
-                BufferedWriter wr = new BufferedWriter(new FileWriter(archivo));
-                FileWriter escribirArchivo = new FileWriter(archivo, true);
-                BufferedWriter buffer = new BufferedWriter(escribirArchivo);
-                
-                
-                buffer.write
-                        ("[database]\n"
-                        + "servidor="+this.TxtServidor.getText()+"\n"
-                        + "usuario="+this.TxtUsuario.getText()+"\n"
-                        + "contraseña="+this.TxtContraseña.getText()+"\n"
-                        + "motor="+this.CboxMotor.getSelectedItem()+"\n"
-                        + "basededatos="+this.TxtBaseDeDatos.getText()+"\n");
-                buffer.newLine();
-                buffer.close();
-                wr.close();
-                escribirArchivo.close();
-
-                ArchivoAbierto = true;
-              
-            } catch (Exception ex) {
+            //Si Existe el fichero lo borra
+            if (archivo.exists()) {
+                System.out.println("remplazando archivo existente");
+                archivo.delete();
             }
+            
+            BufferedWriter wr = new BufferedWriter(new FileWriter(archivo));
+            FileWriter escribirArchivo = new FileWriter(archivo, true);
+            BufferedWriter buffer = new BufferedWriter(escribirArchivo);
+                
+                
+            buffer.write
+                ("[database]\n"
+                + "servidor="+this.TxtServidor.getText()+"\n"
+                + "usuario="+this.TxtUsuario.getText()+"\n"
+                + "contraseña="+this.TxtContraseña.getText()+"\n"
+                + "motor="+this.CboxMotor.getSelectedItem()+"\n"
+                + "basededatos="+this.TxtBaseDeDatos.getText()+"\n");
+            buffer.newLine();
+            buffer.close();
+            wr.close();
+            escribirArchivo.close();
+
+        } catch (Exception ex) {
+            System.out.println("Error al crear el archivo.ini");
+        }
         
     }  
     
@@ -306,16 +284,22 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         
         FileCho = new JFileChooser();
         FileCho.setFileSelectionMode(0);
-        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("INI", "ini");
-        FileCho.setFileFilter(filtroImagen);
+        FileNameExtensionFilter filtro = new FileNameExtensionFilter("INI", "ini");
+        FileCho.setFileFilter(filtro);
         FileCho.setDialogTitle("Abrir archivo");
         
         if (FileCho.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             archivo = FileCho.getSelectedFile();
            
             ruta = FileCho.getSelectedFile().toString();
-            //archiconfig.leer(ruta);
-            ArchivoAbierto=true;
+            String vect[]= archiconfig.leer(ruta);
+            this.CboxMotor.setSelectedItem(vect[0]);
+            this.TxtBaseDeDatos.setText(vect[1]);
+            this.TxtServidor.setText(vect[2]);
+            this.TxtUsuario.setText(vect[3]);
+            this.TxtContraseña.setText(vect[4]);
+            
+          
  
         }
 
