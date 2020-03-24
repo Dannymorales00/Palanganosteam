@@ -12,22 +12,32 @@ import org.ini4j.*;
  */
 public class Manejoconfig {
 
-    public void leer(String[] args) {
+    public void leer() {
         
     
         try{
-            Wini ini = new Wini(new File("C:\\Users\\sdkca\\Desktop\\myinifile.ini"));
-            int age = ini.get("owner", "age", int.class);
-            double height = ini.get("owner", "height", double.class);
-            String server = ini.get("database", "server");
+             String ruta= (String.valueOf( ClassLoader.getSystemResource("archivoconfig/config.ini")).substring(6)) ;
+             System.out.println("aqui ruta:"+ruta);
             
             
-            System.out.print("Edad: " + age + "\n");
-            System.out.print("Altura: " + height + "\n");
-            System.out.print("IP Servidor: " + server + "\n");
+            Wini ini = new Wini(new File(ruta));
+            String servidor = ini.get("database", "servidor", String.class);
+            String usuario = ini.get("database", "usuario", String.class);
+            String contraseña = ini.get("database", "contraseña", String.class);
+            String motor = ini.get("database", "motor", String.class);
+            String basededatos = ini.get("database", "basededatos", String.class);
+        
+            
+            
+            System.out.println("servidor: "+ servidor);
+            System.out.println("usuario: "+ usuario);
+            System.out.println("contraseña: "+ contraseña);
+            System.out.println("motor: "+ motor);
+            System.out.println("basededatos: "+ basededatos);
             // Para atrapar cual excepción relacionada a encontrar el archivo p. ej
             // (The system cannot find the file specified)
         }catch(Exception e){
+            System.out.println("error al leer el archivo config.ini");
             System.err.println(e.getMessage());
         }
     
