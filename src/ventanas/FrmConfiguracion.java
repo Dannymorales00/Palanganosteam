@@ -5,7 +5,9 @@
  */
 package ventanas;
 
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
@@ -202,7 +204,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         if (Camposllenos()) {
             
             System.out.println("Creando Archivo Nuevo");
-            //CrearFicheroNuevo();
+            CrearFicheroNuevo();
         }
         System.out.println(Camposllenos());
         if ( !ArchivoAbierto && !Camposllenos()) {
@@ -219,6 +221,64 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         
     }
     
+    
+    
+         public void CrearFicheroNuevo() {
+  
+
+        FileCho = new JFileChooser();
+        // lo establece como que solo es un archivo
+        FileCho.setFileSelectionMode(0);
+        
+        //esto es para agregar el filtro de la extension en el jfile chooser al guardar
+        //  FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("TXT", "txt");
+        //   FileCho.setFileFilter(filtroImagen);
+//        FileCho.setDialogTitle("Guardar archivo " + this.LblNombre.getText());
+//        FileCho.setSelectedFile(new File(this.LblNombre.getText()));
+//        
+    
+           String ruta= (String.valueOf( ClassLoader.getSystemResource("archivoconfig/")).substring(6)) ;
+             System.out.println("aqui ruta:"+ruta);
+            
+            
+         
+            archivo = new File(ruta+"config.ini");
+            
+            //this.LblNombre.setText(archivo.getName());
+            try {
+                
+                
+           
+                //Si Existe el fichero lo borra
+                if (archivo.exists()) {
+                    System.out.println("el archivo existe");
+                    archivo.delete();
+                }
+                BufferedWriter wr = new BufferedWriter(new FileWriter(archivo));
+                FileWriter escribirArchivo = new FileWriter(archivo, true);
+                BufferedWriter buffer = new BufferedWriter(escribirArchivo);
+                
+                
+                buffer.write
+                    ("[database]\n"
+                        + "servidor=\n"
+                        + "usuario=\n"
+                        + "contraseña=\n"
+                        + "motor=\n"
+                        + "basededatos=\n");
+                buffer.newLine();
+                buffer.close();
+                wr.close();
+                escribirArchivo.close();
+
+                ArchivoAbierto = true;
+              
+            } catch (Exception ex) {
+            }
+        
+    }  
+    
+  
     
     
     /**
