@@ -229,7 +229,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
-        
+        LeerFichero();
     }//GEN-LAST:event_BtnAbrirActionPerformed
 
     
@@ -312,31 +312,11 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         
         if (FileCho.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
             archivo = FileCho.getSelectedFile();
-         
+           
             ruta = FileCho.getSelectedFile().toString();
-            try {
-                /*Si existe el fichero*/
-                if (archivo.exists()) {
-                    /*Abre un flujo de lectura a el fichero*/
-                    BufferedReader leeArchivo = new BufferedReader(new FileReader(archivo));
-                    String Slinea, datos = "";
-                    /*Lee el fichero linea a linea hasta llegar a la ultima*/
-                    while ((Slinea = leeArchivo.readLine()) != null) {
-                        /*Imprime la linea leida*/
-                        datos = datos + Slinea + "\n";
-                    }
-        
-                    /*Cierra el flujo*/
-                    leeArchivo.close();
-   
-         
-                } else {
-                    System.out.println("Fichero No Existe");
-                }
-            } catch (Exception ex) {
-                /*Captura un posible error y le imprime en pantalla*/
-                System.out.println(ex.getMessage());
-            }
+            //archiconfig.leer(ruta);
+            ArchivoAbierto=true;
+ 
         }
 
 
