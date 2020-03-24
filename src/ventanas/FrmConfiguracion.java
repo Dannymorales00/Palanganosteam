@@ -6,11 +6,14 @@
 package ventanas;
 
 import config.Manejoconfig;
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.filechooser.FileNameExtensionFilter;
 
 /**
  *
@@ -294,6 +297,55 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }  
     
   
+    
+    
+    
+    
+        public void LeerFichero() {
+     
+        
+        FileCho = new JFileChooser();
+        FileCho.setFileSelectionMode(0);
+        FileNameExtensionFilter filtroImagen = new FileNameExtensionFilter("INI", "ini");
+        FileCho.setFileFilter(filtroImagen);
+        FileCho.setDialogTitle("Abrir archivo");
+        
+        if (FileCho.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
+            archivo = FileCho.getSelectedFile();
+         
+            ruta = FileCho.getSelectedFile().toString();
+            try {
+                /*Si existe el fichero*/
+                if (archivo.exists()) {
+                    /*Abre un flujo de lectura a el fichero*/
+                    BufferedReader leeArchivo = new BufferedReader(new FileReader(archivo));
+                    String Slinea, datos = "";
+                    /*Lee el fichero linea a linea hasta llegar a la ultima*/
+                    while ((Slinea = leeArchivo.readLine()) != null) {
+                        /*Imprime la linea leida*/
+                        datos = datos + Slinea + "\n";
+                    }
+        
+                    /*Cierra el flujo*/
+                    leeArchivo.close();
+   
+         
+                } else {
+                    System.out.println("Fichero No Existe");
+                }
+            } catch (Exception ex) {
+                /*Captura un posible error y le imprime en pantalla*/
+                System.out.println(ex.getMessage());
+            }
+        }
+
+
+
+
+    }
+    
+    
+    
     
     
     /**
