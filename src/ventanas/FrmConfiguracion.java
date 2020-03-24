@@ -5,6 +5,7 @@
  */
 package ventanas;
 
+import config.Manejoconfig;
 import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
@@ -20,6 +21,9 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     private String ruta = "";
     private JFileChooser FileCho = null;
     private File archivo = null;
+    
+    
+    private Manejoconfig archiconfig = new Manejoconfig();
     /**
      * Creates new form FrmConfiguracion
      */
@@ -50,7 +54,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         CboxMotor = new javax.swing.JComboBox<>();
         BtnGuardar = new javax.swing.JButton();
-        jButton1 = new javax.swing.JButton();
+        BtnAbrir = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -105,7 +109,12 @@ public class FrmConfiguracion extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Abrir");
+        BtnAbrir.setText("Abrir");
+        BtnAbrir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAbrirActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -121,7 +130,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                         .addComponent(jLabel6))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addContainerGap()
-                        .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)))
+                        .addComponent(BtnAbrir, javax.swing.GroupLayout.DEFAULT_SIZE, 81, Short.MAX_VALUE)))
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(32, 32, 32)
@@ -167,7 +176,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnGuardar)
-                    .addComponent(jButton1))
+                    .addComponent(BtnAbrir))
                 .addContainerGap())
         );
 
@@ -198,6 +207,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
       
         if (ArchivoAbierto) {
             System.out.println("Trabajando en un archivo abierto");
+            archiconfig.leer();
             //GuardarFichero();
         }
         
@@ -205,6 +215,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
             
             System.out.println("Creando Archivo Nuevo");
             CrearFicheroNuevo();
+        
         }
         System.out.println(Camposllenos());
         if ( !ArchivoAbierto && !Camposllenos()) {
@@ -213,6 +224,10 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnAbrirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbrirActionPerformed
+        
+    }//GEN-LAST:event_BtnAbrirActionPerformed
 
     
     
@@ -223,7 +238,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     
     
     
-         public void CrearFicheroNuevo() {
+    public void CrearFicheroNuevo() {
   
 
         FileCho = new JFileChooser();
@@ -260,12 +275,12 @@ public class FrmConfiguracion extends javax.swing.JFrame {
                 
                 
                 buffer.write
-                    ("[database]\n"
-                        + "servidor=\n"
-                        + "usuario=\n"
-                        + "contraseña=\n"
-                        + "motor=\n"
-                        + "basededatos=\n");
+                        ("[database]\n"
+                        + "servidor="+this.TxtServidor.getText()+"\n"
+                        + "usuario="+this.TxtUsuario.getText()+"\n"
+                        + "contraseña="+this.TxtContraseña.getText()+"\n"
+                        + "motor="+this.CboxMotor.getSelectedItem()+"\n"
+                        + "basededatos="+this.TxtBaseDeDatos.getText()+"\n");
                 buffer.newLine();
                 buffer.close();
                 wr.close();
@@ -317,13 +332,13 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAbrir;
     private javax.swing.JButton BtnGuardar;
     private javax.swing.JComboBox<String> CboxMotor;
     private javax.swing.JTextField TxtBaseDeDatos;
     private javax.swing.JTextField TxtContraseña;
     private javax.swing.JTextField TxtServidor;
     private javax.swing.JTextField TxtUsuario;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
