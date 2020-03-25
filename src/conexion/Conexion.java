@@ -28,36 +28,45 @@ public class Conexion {
     private ResultSet datos;
     
     
+    
+    
     private Connection conn;
     private String driver = "com.mysql.jdbc.Driver";
-    private String user ="root" ;
-    private String password ="";
-    private String url = "jdbc:mysql://localhost:3306/practica?useServerPrepStmts=true";
 
     
     
-    
     public void Conectar() {
-       conn = null; 
-       
-        try {
+        String datos[]=manejoconfig.leer();
+        
+        if(datos!=null){
+            //motor-basededatos-servidor-usuario-contraseña
             
-//            Class.forName(driver);
-            conn = DriverManager.getConnection(url, user, password);
-            this.sentencias=this.conn.createStatement();
-            if(conn!=null)
-            {
-                System.out.println("se conecto la madre");
-            }       
+            
+            
+            String user = datos[3] ;
+            String password =datos[4];
+            String url = "jdbc:"+datos[0]+"://"+datos[2]+"/"+datos[1]+"?useServerPrepStmts=true";
+            conn = null; 
+       
+        
+        
+            try {
+            
+                conn = DriverManager.getConnection(url, user, password);
+                this.sentencias=this.conn.createStatement();
+                if(conn!=null)
+                {
+                    System.out.println("se conecto la madre");
+                }       
             
              
-        } catch (SQLException e) {
+            } catch (SQLException e) {
             
-            System.out.println("no se conecto la madre");
+                System.out.println("no se conecto la madre");
             
-        } 
+            } 
         
-        
+        }
     }
     
     public void Create(String nombre,String ciudad) {

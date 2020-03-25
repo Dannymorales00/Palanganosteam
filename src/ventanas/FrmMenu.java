@@ -5,6 +5,8 @@
  */
 package ventanas;
 
+import conexion.Conexion;
+
 /**
  *
  * @author LeanPC
@@ -12,7 +14,7 @@ package ventanas;
 public class FrmMenu extends javax.swing.JFrame {
     private FrmConfiguracion frmconfig;
     private InternalFrmVehiculo interFrmvehiculo;
-    
+    private Conexion conexion = new Conexion();
     /**
      * Creates new form FrmMenu
      */
@@ -20,6 +22,7 @@ public class FrmMenu extends javax.swing.JFrame {
         initComponents();
         this.setExtendedState(this.MAXIMIZED_BOTH);
         frmconfig = new FrmConfiguracion();
+        conexion.Conectar();
         
     
     }
