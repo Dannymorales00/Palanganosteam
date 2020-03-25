@@ -37,9 +37,12 @@ public class Conexion {
     
     
     public void Conectar() {
+       
+        
         String datos[]=manejoconfig.leer();
         
         if(datos!=null){
+            System.out.println("no es nulo el vector");
             //motor-basededatos-servidor-usuario-contraseña
             
             
