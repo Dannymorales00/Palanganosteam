@@ -72,9 +72,9 @@ public class Conexion {
         
             
         }else{
-            System.out.println("falló el vecto");
-//            FrmConfiguracion frmconfig= new FrmConfiguracion();
-//            frmconfig.setVisible(true);
+      
+            FrmConfiguracion frmconfig= new FrmConfiguracion();
+            frmconfig.setVisible(true);
         }
         
         
