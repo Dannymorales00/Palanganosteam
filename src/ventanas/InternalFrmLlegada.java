@@ -50,6 +50,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         jLabel7 = new javax.swing.JLabel();
         jSpinner1 = new javax.swing.JSpinner();
 
+        setClosable(true);
         setTitle("Llegada");
 
         jLabel1.setText("Placa");
@@ -119,7 +120,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Provincia");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Provincia...", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Provincia...", "San Jose", "Guanacaste", "Cartago", "Limon", "Puntarenas", "Heredia", "Alajuela" }));
 
         jLabel4.setText("Destino");
 
