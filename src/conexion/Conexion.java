@@ -68,10 +68,11 @@ public class Conexion {
             } 
         
             
-        }//else{
+        }else{
+            System.out.println("falló el vecto");
 //            FrmConfiguracion frmconfig= new FrmConfiguracion();
 //            frmconfig.setVisible(true);
-//        }
+        }
         
         
     }
