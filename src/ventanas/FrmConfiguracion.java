@@ -6,10 +6,8 @@
 package ventanas;
 
 import config.Manejoconfig;
-import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileReader;
 import java.io.FileWriter;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
@@ -238,7 +236,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
     
     public void CrearFicheroNuevo() {
   
-        String ruta= (String.valueOf( ClassLoader.getSystemResource("archivoconfig/")).substring(6)) ;
+        String ruta= (String.valueOf( ClassLoader.getSystemResource("")).substring(6)) ;
         System.out.println("archivo creado ruta:"+ruta);
             
         archivo = new File(ruta+"config.ini");

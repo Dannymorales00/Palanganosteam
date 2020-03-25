@@ -21,7 +21,7 @@ public class Manejoconfig {
     
         try{
              //obtenemos la ubicacion del archivo y quitamos los caracteres del inicio inecesarios.
-             String ruta= (String.valueOf( ClassLoader.getSystemResource("archivoconfig/config.ini")).substring(6)) ;
+             String ruta= (String.valueOf( ClassLoader.getSystemResource("config.ini")).substring(6)) ;
              System.out.println("ruta al leer:"+ruta);
             
             
