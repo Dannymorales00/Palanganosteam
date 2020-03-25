@@ -11,10 +11,6 @@ import org.ini4j.*;
  * @author Danny_PC
  */
 public class Manejoconfig {
-
-    
-    
-    
  /**
  *lee el archivo config.ini y
  * retorna un vector ==> motor-basededatos-servidor-usuario-contraseña
@@ -101,12 +97,6 @@ public class Manejoconfig {
         }
         return null;
     
-    }
-    
-    
-    
-    
-    
-    
+    }   
     
 }

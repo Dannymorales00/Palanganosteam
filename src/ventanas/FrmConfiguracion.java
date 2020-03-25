@@ -274,11 +274,6 @@ public class FrmConfiguracion extends javax.swing.JFrame {
         
     }  
     
-  
-    
-    
-    
-    
         public void LeerFichero() {
      
         
