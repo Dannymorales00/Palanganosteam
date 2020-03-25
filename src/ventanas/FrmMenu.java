@@ -14,6 +14,7 @@ import conexion.Conexion;
 public class FrmMenu extends javax.swing.JFrame {
     private FrmConfiguracion frmconfig;
     private InternalFrmVehiculo interFrmvehiculo;
+    private InternalFrmLlegada internalFrmLlegada; 
     private Conexion conexion = new Conexion();
     /**
      * Creates new form FrmMenu
@@ -69,6 +70,11 @@ public class FrmMenu extends javax.swing.JFrame {
         jMenuRegistar.add(jMenuItemVehiculos);
 
         jMenuItemEntrada.setText("Entradas");
+        jMenuItemEntrada.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItemEntradaActionPerformed(evt);
+            }
+        });
         jMenuRegistar.add(jMenuItemEntrada);
 
         jMenuItemSalida.setText("Salidas");
@@ -114,6 +120,12 @@ public class FrmMenu extends javax.swing.JFrame {
         this.interFrmvehiculo.setVisible(true);
  
     }//GEN-LAST:event_jMenuItemVehiculosActionPerformed
+
+    private void jMenuItemEntradaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItemEntradaActionPerformed
+       this.internalFrmLlegada = new InternalFrmLlegada();
+       this.jDesktopPane1.add(this.internalFrmLlegada);
+       this.internalFrmLlegada.setVisible(true);
+    }//GEN-LAST:event_jMenuItemEntradaActionPerformed
 
     /**
      * @param args the command line arguments
