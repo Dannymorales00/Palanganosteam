@@ -13,6 +13,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import ventanas.FrmConfiguracion;
 
 
 /**
@@ -66,7 +67,13 @@ public class Conexion {
             
             } 
         
+            
+        }else{
+            FrmConfiguracion frmconfig= new FrmConfiguracion();
+            frmconfig.setVisible(true);
         }
+        
+        
     }
     
     public void Create(String nombre,String ciudad) {
