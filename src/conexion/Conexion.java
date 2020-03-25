@@ -27,12 +27,25 @@ public class Conexion {
 
     private Statement sentencias;
     private ResultSet datos;
-    
-    
-    
-    
+ 
     private Connection conn;
     private String driver = "com.mysql.jdbc.Driver";
+
+    public Statement getSentencias() {
+        return sentencias;
+    }
+
+    public void setSentencias(Statement sentencias) {
+        this.sentencias = sentencias;
+    }
+
+    public ResultSet getDatos() {
+        return datos;
+    }
+
+    public void setDatos(ResultSet datos) {
+        this.datos = datos;
+    }
 
     
     

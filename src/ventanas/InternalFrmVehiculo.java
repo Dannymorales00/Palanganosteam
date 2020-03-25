@@ -5,6 +5,9 @@
  */
 package ventanas;
 
+import conexion.Conexion;
+import controlador.ControladorVehiculo;
+import javax.swing.JOptionPane;
 import modelo.Vehiculo;
 
 /**
@@ -12,13 +15,17 @@ import modelo.Vehiculo;
  * @author LeanPC
  */
 public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
-
+    private ControladorVehiculo cv;
+    private Conexion conexion;
     private Vehiculo vehiculo;
     /**
      * Creates new form InternalFrmVehiculo
      */
     public InternalFrmVehiculo() {
         initComponents();
+        conexion = new Conexion();
+        conexion.Conectar();
+        cv = new ControladorVehiculo(conexion);
     }
 
     /**
@@ -85,14 +92,39 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
         });
 
         jButtonGuardar.setText("Guardar");
+        jButtonGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonGuardarActionPerformed(evt);
+            }
+        });
 
         jButtonModificar.setText("Modificar");
+        jButtonModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonModificarActionPerformed(evt);
+            }
+        });
 
         jButtonCancel.setText("Cancelar");
+        jButtonCancel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonCancelActionPerformed(evt);
+            }
+        });
 
         jButtonEliminar.setText("Eliminar");
+        jButtonEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonEliminarActionPerformed(evt);
+            }
+        });
 
         jButtonBuscar.setText("Buscar");
+        jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -172,6 +204,46 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
         this.TxtDescripcion.setText("");
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
+    private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
+        if (Camposllenos()) {
+             vehiculo = new Vehiculo(this.TxtPlaca.getText(),this.TxtDescripcion.getText());
+             if (cv.ValidarPK(vehiculo)) {
+                cv.añadir(vehiculo);
+                
+            }    
+        }else {
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+        } 
+    }//GEN-LAST:event_jButtonGuardarActionPerformed
+
+    private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
+        vehiculo.setPlaca(vehiculo.getPlaca());
+        vehiculo.setDescripcion(this.TxtDescripcion.getText());
+        cv.actualizar(vehiculo);
+    }//GEN-LAST:event_jButtonModificarActionPerformed
+
+    private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
+        this.TxtPlaca.setText(this.vehiculo.getPlaca());
+        this.TxtDescripcion.setText(this.vehiculo.getDescripcion());
+    }//GEN-LAST:event_jButtonCancelActionPerformed
+
+    private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
+        if (cv.eliminar(vehiculo)) {
+            vehiculo = null;
+            System.out.println("Se logro eliminar");
+        }else{
+            System.out.println("No se puedo eliminar");
+        }
+    }//GEN-LAST:event_jButtonEliminarActionPerformed
+
+    private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
+        
+    }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    public boolean Camposllenos() {
+        return !(this.TxtPlaca.getText().equals("") || this.TxtDescripcion.getText().equals("")) ;
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TxtDescripcion;
