@@ -5,12 +5,15 @@
  */
 package ventanas;
 
+import modelo.Bitacora;
+
 /**
  *
  * @author Danny_PC
  */
 public class InternalFrmLlegada extends javax.swing.JInternalFrame {
-
+    private Bitacora bitacora = new Bitacora();
+           
     /**
      * Creates new form InternalFrmLlegada
      */
@@ -55,11 +58,17 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
         jLabel1.setText("Placa");
 
+        TxtDescripcion.setEditable(false);
+
         jLabel2.setText("Descripción");
+
+        TxtLlegada.setEditable(false);
 
         jLabel8.setText("Fecha Llegada");
 
         jLabel9.setText("Hora Llegada");
+
+        jTextField2.setEditable(false);
 
         jLabel10.setText("Kilomatraje Final");
 
@@ -124,9 +133,15 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
         jLabel4.setText("Destino");
 
+        TxtDestino.setEditable(false);
+
         jLabel5.setText("Fecha salida");
 
+        TxtFechaSalida.setEditable(false);
+
         jLabel6.setText("Hora salida");
+
+        TxtHoraSalida.setEditable(false);
 
         jLabel7.setText("Kilometraje Inicial");
 
