@@ -27,6 +27,42 @@ public class Bitacora {
 
     public Bitacora() {
 
+        placa = null;
+        provincia = null;
+        destino = null;
+        fechasalida = null;
+        horasalida = null;
+        kinicial = 0;
+        fechallegada = null;
+        horallegada = null;
+        kfinal = 0;
+    }
+
+    public Bitacora(String placa, String provincia, String destino, Date fechasalida, Time horasalida, int kinicial, Date fechallegada, Time horallegada, int kfinal) {
+        this.placa = placa;
+        this.provincia = provincia;
+        this.destino = destino;
+        this.fechasalida = fechasalida;
+        this.horasalida = horasalida;
+        this.kinicial = kinicial;
+        this.fechallegada = fechallegada;
+        this.horallegada = horallegada;
+        this.kfinal = kfinal;
+    }
+
+    public Bitacora(String placa) {
+        this.placa = placa;
+        provincia = null;
+        destino = null;
+        fechasalida = null;
+        horasalida = null;
+        kinicial = 0;
+        fechallegada = null;
+        horallegada = null;
+        kfinal = 0;
+    }
+    
+    public boolean comprobar(){
     }
 
     public String getPlaca() {
