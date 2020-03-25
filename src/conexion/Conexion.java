@@ -5,6 +5,7 @@
  */
 package conexion;
 
+import config.Manejoconfig;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -19,6 +20,7 @@ import java.util.logging.Logger;
  * @author Danny_PC
  */
 public class Conexion {
+        Manejoconfig manejoconfig = new Manejoconfig();
     
         //profe
 

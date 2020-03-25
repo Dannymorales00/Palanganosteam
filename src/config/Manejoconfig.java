@@ -52,8 +52,9 @@ public class Manejoconfig {
         }catch(Exception e){
             System.out.println("error al leer el archivo config.ini");
             System.err.println(e.getMessage());
+            return null;
         }
-        return null;
+  
     
     }
     
