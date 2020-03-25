@@ -68,10 +68,10 @@ public class Conexion {
             } 
         
             
-        }else{
-            FrmConfiguracion frmconfig= new FrmConfiguracion();
-            frmconfig.setVisible(true);
-        }
+        }//else{
+//            FrmConfiguracion frmconfig= new FrmConfiguracion();
+//            frmconfig.setVisible(true);
+//        }
         
         
     }
