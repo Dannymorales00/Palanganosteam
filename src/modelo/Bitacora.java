@@ -63,6 +63,8 @@ public class Bitacora {
     }
     
     public boolean comprobar(){
+        return false;
+    
     }
 
     public String getPlaca() {
