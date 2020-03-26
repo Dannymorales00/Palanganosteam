@@ -35,12 +35,8 @@ public class ControladorVehiculo {;
         
     public boolean añadir(Vehiculo vehiculo){
         try {
-            sentencias.executeUpdate("insert into vehiculos values(null,'"+vehiculo.getPlaca()+"','"+vehiculo.getDescripcion()+"')",sentencias.RETURN_GENERATED_KEYS);
-            datos = sentencias.getGeneratedKeys();
-            if (datos.next()) {
-                System.out.println(datos.getInt(1));
-            }   
-            return true;
+           return sentencias.execute("insert into vehiculos values(null,'"+vehiculo.getPlaca()+"','"+vehiculo.getDescripcion()+"')",sentencias.RETURN_GENERATED_KEYS);
+             
         } catch (SQLException ex) {
             System.out.println("Error al añadir");
         }

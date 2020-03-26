@@ -5,6 +5,10 @@
  */
 package ventanas;
 
+import controlador.ControladorVehiculo;
+import modelo.Bitacora;
+import modelo.Vehiculo;
+
 /**
  *
  * @author mata6
@@ -14,11 +18,16 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalFrmSalida
      */
+    Vehiculo vehiculo;
+    ControladorVehiculo contrVehiculo;
     public InternalFrmSalida() {
         initComponents();
+        contrVehiculo = new ControladorVehiculo();
+        vehiculo = new Vehiculo();
         this.descripcionTxt.setEditable(false);
         this.fechaSalidatxt.setEditable(false);
         this.horaSalidaTxt.setEditable(false);
+        
     }
 
     /**
@@ -66,6 +75,11 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 
         jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jButton1.setText("Buscar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         descripcionTxt.setColumns(20);
         descripcionTxt.setRows(5);
@@ -250,8 +264,17 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        // TODO add your handling code here:
+   
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        this.vehiculo.setPlaca(this.placaTxt.getText());
+        if (contrVehiculo.ValidarPK(vehiculo)) {
+            
+        }
+
+        
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

@@ -7,6 +7,7 @@ package ventanas;
 
 import conexion.Conexion;
 import controlador.ControladorVehiculo;
+import javax.swing.JOptionPane;
 import modelo.Vehiculo;
 
 /**
@@ -204,15 +205,15 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
-//        if (Camposllenos()) {
-//             vehiculo = new Vehiculo(this.TxtPlaca.getText(),this.TxtDescripcion.getText());
-//             if (cv.ValidarPK(vehiculo)) {
-//                cv.añadir(vehiculo);
-//                
-//            }    
-//        }else {
-//            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
-//        } 
+        if (Camposllenos()) {
+            vehiculo = new Vehiculo(this.TxtPlaca.getText(),this.TxtDescripcion.getText());
+             if (!cv.ValidarPK(vehiculo)) {
+                cv.añadir(vehiculo);
+                
+            }    
+        }else {
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+       } 
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
