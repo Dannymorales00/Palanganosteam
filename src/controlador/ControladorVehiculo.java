@@ -138,5 +138,9 @@ public class ControladorVehiculo {;
         }
         return vehiculos;
     }
+    
+    public boolean ValidarFK(){
+     return true;
+    }
          
 }
