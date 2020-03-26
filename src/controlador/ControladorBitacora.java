@@ -37,7 +37,7 @@ public class ControladorBitacora {
  
     public boolean añadir(Bitacora bitacora){
         try {
-            sentencias.executeUpdate("insert into bitacoras values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','"+bitacora.getFechasalida()+"','"+bitacora.getHorasalida()+"','"+bitacora.getKinicial()+"','"+bitacora.getFechallegada()+"','"+bitacora.getHorallegada()+"','"+bitacora.getKfinal()+"')",sentencias.RETURN_GENERATED_KEYS);
+            sentencias.executeUpdate("insert into bitacora values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','CURDATE()','CURTIME()','"+bitacora.getKinicial()+"','NULL','NULL','NULL')",sentencias.RETURN_GENERATED_KEYS);
             datos = sentencias.getGeneratedKeys();
             if (datos.next()) 
             {
@@ -50,7 +50,7 @@ public class ControladorBitacora {
             return true;
             
         } catch (SQLException ex) {
-            System.out.println("Error al añadir");
+            System.out.println("Error al añadir una bitacora");
         }
         return false;
     }
@@ -60,7 +60,7 @@ public class ControladorBitacora {
         
         try {
             
-            this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+placa);
+            this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+placa);
             
             if(datos.next())
             {
@@ -109,8 +109,9 @@ public class ControladorBitacora {
     
     
      public boolean actualizar(Bitacora bitacora){
-            try {
-            sentencias.executeUpdate("update into bitacora values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','"+bitacora.getFechasalida()+"','"+bitacora.getHorasalida()+"','"+bitacora.getKinicial()+"','"+bitacora.getFechallegada()+"','"+bitacora.getHorallegada()+"','"+bitacora.getKfinal()+"')");
+            try {  
+              
+            sentencias.executeUpdate("UPDATE bitacora SET fechallegada='CURDATE()',horallegada='CURTIME()',kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
               
             return true;
         } catch (SQLException ex) {
