@@ -6,7 +6,8 @@
 package ventanas;
 
 import modelo.Bitacora;
-
+   
+    
 /**
  *
  * @author Danny_PC

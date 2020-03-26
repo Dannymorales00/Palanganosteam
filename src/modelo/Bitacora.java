@@ -63,8 +63,10 @@ public class Bitacora {
     }
     
     public boolean comprobar(){
-        return false;
-    
+        
+        return this.placa!=null && this.provincia!=null && this.kinicial>=0 && 
+               this.horasalida!=null && this.horallegada!=null && this.fechasalida
+               !=null && this.destino!=null ;
     }
 
     public String getPlaca() {
@@ -132,7 +134,9 @@ public class Bitacora {
     }
 
     public void setKfinal(int kfinal) {
-        this.kfinal = kfinal;
+        if(this.kinicial<this.kfinal){
+            this.kfinal = kfinal;
+        }else{System.out.println("el kilometraje final es menor al inicial");}
     }
 
 }
