@@ -5,10 +5,9 @@
  */
 package ventanas;
 
-import controlador.ControladorVehiculo;
-import javax.swing.JOptionPane;
+import controlador.ControladorBitacora;
 import modelo.Bitacora;
-import modelo.Vehiculo;
+
 
 /**
  *
@@ -19,15 +18,16 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalFrmSalida
      */
-    Vehiculo vehiculo;
-    ControladorVehiculo contrVehiculo;
+    private    Bitacora bitacora;
+    private ControladorBitacora cb= new ControladorBitacora();
+    
     public InternalFrmSalida() {
+        
         initComponents();
-        contrVehiculo = new ControladorVehiculo();
-        vehiculo = new Vehiculo();
-        this.descripcionTxt.setEditable(false);
-        this.fechaSalidatxt.setEditable(false);
-        this.horaSalidaTxt.setEditable(false);
+        
+        
+        
+    
         
     }
 
@@ -59,8 +59,8 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         kilometrajeSp = new javax.swing.JSpinner();
-        jButton2 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
+        BtnCancelar = new javax.swing.JButton();
+        BtnGuardar = new javax.swing.JButton();
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -82,6 +82,7 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
             }
         });
 
+        descripcionTxt.setEditable(false);
         descripcionTxt.setColumns(20);
         descripcionTxt.setRows(5);
         jScrollPane1.setViewportView(descripcionTxt);
@@ -136,11 +137,13 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 
         destinoTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
+        fechaSalidatxt.setEditable(false);
         fechaSalidatxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Fecha Salida:");
 
+        horaSalidaTxt.setEditable(false);
         horaSalidaTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
@@ -169,12 +172,13 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                             .addComponent(horaSalidaTxt)
                             .addComponent(provinciaCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(destinoTxt)
-                            .addComponent(fechaSalidatxt)))
+                            .addComponent(fechaSalidatxt))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
-                        .addComponent(kilometrajeSp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(kilometrajeSp)))
+                .addContainerGap())
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -202,14 +206,14 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton2.setText("Cancelar");
+        BtnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BtnCancelar.setText("Cancelar");
 
-        jButton3.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton3.setText("Guardar");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        BtnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                BtnGuardarActionPerformed(evt);
             }
         });
 
@@ -225,9 +229,9 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(194, 194, 194)
-                        .addComponent(jButton3)
+                        .addComponent(BtnGuardar)
                         .addGap(27, 27, 27)
-                        .addComponent(jButton2)))
+                        .addComponent(BtnCancelar)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -239,8 +243,8 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton2)
-                    .addComponent(jButton3))
+                    .addComponent(BtnCancelar)
+                    .addComponent(BtnGuardar))
                 .addContainerGap())
         );
 
@@ -264,28 +268,47 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-   
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+       
+        
+        if(!this.placaTxt.equals("") && !this.destinoTxt.equals("") && !this.provinciaCb.equals("") && !this.kilometrajeSp.equals(""))
+        {
+          
+                bitacora= new Bitacora();
+                bitacora.setPlaca(this.placaTxt.getText());
+                bitacora.setDestino(this.destinoTxt.getText());
+                bitacora.setProvincia(String.valueOf( this.provinciaCb.getSelectedItem()));
+                bitacora.setKinicial((int) this.kilometrajeSp.getValue());
+               
+                if(cb.ValidarFK(bitacora))
+                {
+                    cb.añadir(bitacora);
+                    
+                }else{System.out.println("ya no existe ese vehiculo");}
+             
+        }else{System.out.println("campos requeridos vacios");}
+        
+        
+    }//GEN-LAST:event_BtnGuardarActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.vehiculo.setPlaca(this.placaTxt.getText());
-        if (contrVehiculo.ValidarPK(vehiculo)) {
-            descripcionTxt.setText(contrVehiculo.buscar(vehiculo.getPlaca()).getDescripcion());
-        }else{
-            JOptionPane.showMessageDialog(this, "El vehículo ingresado no existe");
-        }
+//        this.vehiculo.setPlaca(this.placaTxt.getText());
+//        if (contrVehiculo.ValidarPK(vehiculo)) {
+//            descripcionTxt.setText(contrVehiculo.buscar(vehiculo.getPlaca()).getDescripcion());
+//        }else{
+//            JOptionPane.showMessageDialog(this, "El vehículo ingresado no existe");
+//        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnGuardar;
     private javax.swing.JTextArea descripcionTxt;
     private javax.swing.JTextField destinoTxt;
     private javax.swing.JTextField fechaSalidatxt;
     private javax.swing.JTextField horaSalidaTxt;
     private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

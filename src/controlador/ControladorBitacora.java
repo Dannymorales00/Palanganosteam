@@ -25,8 +25,8 @@ import ventanas.FrmMenu;
 public class ControladorBitacora {
     
     private Conexion conn;
-    private Statement sentencias = this.conn.getSentencias();
-    private ResultSet datos = this.conn.getDatos();
+    private Statement sentencias;
+    private ResultSet datos; 
 
     public ControladorBitacora() {
         this.conn = FrmMenu.getConexion();
@@ -37,7 +37,7 @@ public class ControladorBitacora {
  
     public boolean añadir(Bitacora bitacora){
         try {
-            sentencias.executeUpdate("insert into bitacora values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','CURDATE()','CURTIME()','"+bitacora.getKinicial()+"','NULL','NULL','NULL')",sentencias.RETURN_GENERATED_KEYS);
+            sentencias.executeUpdate("insert into bitacora values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"',CURDATE(),CURTIME(),'"+bitacora.getKinicial()+"',null,null,null)",sentencias.RETURN_GENERATED_KEYS);
             datos = sentencias.getGeneratedKeys();
             if (datos.next()) 
             {
@@ -108,7 +108,7 @@ public class ControladorBitacora {
     }
     
     
-     public boolean actualizar(Bitacora bitacora){
+    public boolean actualizar(Bitacora bitacora){
             try {  
               
             sentencias.executeUpdate("UPDATE bitacora SET fechallegada='CURDATE()',horallegada='CURTIME()',kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
@@ -123,7 +123,7 @@ public class ControladorBitacora {
     
     
     
-        public ArrayList<Bitacora> listar(String placa){
+    public ArrayList<Bitacora> listar(String placa){
             ArrayList<Bitacora> bitacoras = new ArrayList();
             try {
                 this.datos = this.sentencias.executeQuery("select * from bitacora where descripcion like '"+placa+"'");
@@ -147,7 +147,7 @@ public class ControladorBitacora {
         
         
         
-        public boolean ValidarPK(Bitacora bitacora){
+    public boolean ValidarPK(Bitacora bitacora){
         
         try {
             this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+bitacora.getPlaca());
@@ -163,19 +163,26 @@ public class ControladorBitacora {
     } 
         
         
-           public boolean ValidarFK(Bitacora bitacora){
-        
-        try {
+    public boolean ValidarFK(Bitacora bitacora){
+        boolean result = false;
+        try 
+        {
             this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+bitacora.getPlaca());
                 
-            if (datos.next()) {
-                return true;
+            if (datos.next()) 
+            {
+                System.out.println("si existe el vehiculo FK");
+                result=true;
+              
             }
                 
-        } catch (SQLException ex) {
+        } catch (SQLException ex){
             System.out.println("Error al validar");
+            
         }
-        return false;
+         
+        return result;
+       
     }      
         
        
