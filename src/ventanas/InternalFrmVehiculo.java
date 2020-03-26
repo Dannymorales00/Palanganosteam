@@ -17,7 +17,10 @@ import modelo.Vehiculo;
  */
 public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     private ControladorVehiculo cv;
-    private Vehiculo vehiculo;
+    static Vehiculo vehiculo;
+
+    
+
     /**
      * Creates new form InternalFrmVehiculo
      */
@@ -253,8 +256,8 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField TxtDescripcion;
-    private javax.swing.JTextField TxtPlaca;
+    public static javax.swing.JTextField TxtDescripcion;
+    public static javax.swing.JTextField TxtPlaca;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonEliminar;

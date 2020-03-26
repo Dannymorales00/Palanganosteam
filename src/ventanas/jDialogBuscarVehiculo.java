@@ -7,6 +7,7 @@ package ventanas;
 
 import controlador.ControladorVehiculo;
 import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
 import modelo.Vehiculo;
 
 /**
@@ -42,6 +43,7 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButtonBuscar = new javax.swing.JButton();
+        jButtonSeleccionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -94,12 +96,24 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButtonBuscar.setText("Buscar");
         jButtonBuscar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButtonBuscarActionPerformed(evt);
+            }
+        });
+
+        jButtonSeleccionar.setText("Seleccionar");
+        jButtonSeleccionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButtonSeleccionarActionPerformed(evt);
             }
         });
 
@@ -114,12 +128,12 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 631, Short.MAX_VALUE)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addComponent(jButtonBuscar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButtonSeleccionar)))
                 .addContainerGap())
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(47, 47, 47)
-                .addComponent(jButtonBuscar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -131,7 +145,9 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 385, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButtonBuscar)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButtonBuscar)
+                    .addComponent(jButtonSeleccionar))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
 
@@ -162,9 +178,23 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
        this.TextDescripcion.setText("");
        
     }//GEN-LAST:event_jButtonBuscarActionPerformed
+
+    private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
+        String placa="";
+        
+        for (int i = 0; i < this.jTable1.getColumnCount(); i++) {
+             placa =  this.jTable1.getValueAt(this.jTable1.getSelectedRow(), i).toString();
+              System.out.println(placa);
+        }    
+    }//GEN-LAST:event_jButtonSeleccionarActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        int seleccion = this.jTable1.rowAtPoint(evt.getPoint());
+        this.TextDescripcion.setText(String.valueOf(this.jTable1.getValueAt(seleccion, 0)));
+    }//GEN-LAST:event_jTable1MouseClicked
       
     public void mostar(ArrayList<Vehiculo> vehiculos){
-        System.out.println(vehiculos);
+        
         String matriz[][] = new String[vehiculos.size()][2];
         
         for (int i = 0; i < vehiculos.size(); i++) {
@@ -228,6 +258,7 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField TextDescripcion;
     private javax.swing.JButton jButtonBuscar;
+    private javax.swing.JButton jButtonSeleccionar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
