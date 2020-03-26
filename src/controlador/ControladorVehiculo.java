@@ -115,13 +115,13 @@ public class ControladorVehiculo {;
             this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+vehiculo.getPlaca());
                 
             if (datos.next()) {
-                return true;
+                return false;
             }
                 
         } catch (SQLException ex) {
             System.out.println("Error al validar");
         }
-        return false;
+        return true;
     }
        
     public ArrayList<Vehiculo> todosLosVehiculos(){

@@ -130,7 +130,24 @@ public class ControladorBitacora {
             return bitacoras; 
     }
     
-       
+        public boolean ValidarPK(Bitacora bitacora){
+        
+        try {
+            this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+bitacora.getPlaca());
+                
+            if (datos.next()) {
+                return false;
+            }
+                
+        } catch (SQLException ex) {
+            System.out.println("Error al validar");
+        }
+        return true;
+    } 
+        
+        
+        
+        
        
     
 }
