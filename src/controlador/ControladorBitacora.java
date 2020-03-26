@@ -9,6 +9,7 @@ import conexion.Conexion;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import modelo.Bitacora;
 import ventanas.FrmMenu;
 
@@ -96,7 +97,7 @@ public class ControladorBitacora {
     
     public boolean eliminar(Bitacora bitacora){
         try {
-            this.sentencias.executeUpdate("delete from vehiculos where placa="+bitacora.getPlaca());
+            this.sentencias.executeUpdate("delete from bitacora where placa="+bitacora.getPlaca());
             
             
         } catch (SQLException ex) {
@@ -104,7 +105,31 @@ public class ControladorBitacora {
             System.out.println("Error al borrar");
         }
             return false;
-    }  
+    }
+    
+    
+    
+    
+        public ArrayList<Bitacora> listar(String placa){
+            ArrayList<Bitacora> bitacoras = new ArrayList();
+            try {
+                this.datos = this.sentencias.executeQuery("select * from bitacora where descripcion like '"+placa+"'");
+                
+                while(datos.next())
+            {
+              
+               Bitacora bitacora = new Bitacora(datos.getString(2),datos.getString(3),datos.getString(4),datos.getDate(5),datos.getTime(6),datos.getInt(7),datos.getDate(8),datos.getTime(9),datos.getInt(10));
+               
+               bitacoras.add(bitacora);
+            
+            }
+    
+            } catch (SQLException ex) {
+                System.out.println("Error al listar");
+            }
+            return bitacoras; 
+    }
+    
        
        
     
