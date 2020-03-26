@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import modelo.Bitacora;
+import ventanas.FrmMenu;
 
 
 /**
@@ -26,8 +27,11 @@ public class ControladorBitacora {
     private Statement sentencias = this.conn.getSentencias();
     private ResultSet datos = this.conn.getDatos();
 
-    public ControladorBitacora(Conexion conn) {
-        this.conn = conn;
+    public ControladorBitacora() {
+        this.conn = FrmMenu.getConexion();
+        this.sentencias= conn.getSentencias();
+        this.datos= conn.getDatos();
+        
     }
  
     public boolean añadir(Bitacora bitacora){
