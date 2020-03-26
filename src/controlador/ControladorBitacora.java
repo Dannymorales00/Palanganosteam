@@ -94,7 +94,17 @@ public class ControladorBitacora {
     
     
     
-       
+    public boolean eliminar(Bitacora bitacora){
+        try {
+            this.sentencias.executeUpdate("delete from vehiculos where placa="+bitacora.getPlaca());
+            
+            
+        } catch (SQLException ex) {
+                
+            System.out.println("Error al borrar");
+        }
+            return false;
+    }  
        
        
     
