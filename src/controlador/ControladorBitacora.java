@@ -130,6 +130,10 @@ public class ControladorBitacora {
             return bitacoras; 
     }
     
+        
+        
+        
+        
         public boolean ValidarPK(Bitacora bitacora){
         
         try {
