@@ -47,5 +47,26 @@ public class ControladorBitacora {
     }
     
     
+        public Bitacora buscar(int placa){
+            try {
+            
+            this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+placa);
+            
+            if(datos.next())
+            {
+                System.out.println(datos.getInt(1));
+                System.out.println(datos.getString(2));
+                System.out.println(datos.getString(3));
+            
+            }else 
+                return null;
+            }
+            catch (SQLException ex) {
+                System.out.println("Error al buscar");
+            }
+            return null;
+    }    
+       
+       
     
 }
