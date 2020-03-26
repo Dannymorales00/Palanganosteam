@@ -108,6 +108,18 @@ public class ControladorBitacora {
     }
     
     
+     public boolean actualizar(Bitacora bitacora){
+            try {
+            sentencias.executeUpdate("update into bitacora values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','"+bitacora.getFechasalida()+"','"+bitacora.getHorasalida()+"','"+bitacora.getKinicial()+"','"+bitacora.getFechallegada()+"','"+bitacora.getHorallegada()+"','"+bitacora.getKfinal()+"')");
+              
+            return true;
+        } catch (SQLException ex) {
+            System.out.println("Error al actualizar");
+        }
+        return false;
+    }
+    
+    
     
     
         public ArrayList<Bitacora> listar(String placa){
@@ -150,7 +162,20 @@ public class ControladorBitacora {
     } 
         
         
+           public boolean ValidarFK(Bitacora bitacora){
         
+        try {
+            this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+bitacora.getPlaca());
+                
+            if (datos.next()) {
+                return true;
+            }
+                
+        } catch (SQLException ex) {
+            System.out.println("Error al validar");
+        }
+        return false;
+    }      
         
        
     
