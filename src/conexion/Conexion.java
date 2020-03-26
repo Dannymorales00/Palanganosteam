@@ -95,7 +95,7 @@ public class Conexion {
     public void Create(String nombre,String ciudad) {
        
         try {
-                                                                                                            //sentencia para retornar datos ingresados                                                        
+                                                                                                                                                                  
             this.sentencias.executeUpdate("insert into datosgenerales values(null,'"+nombre+"','"+ciudad+"')",Statement.RETURN_GENERATED_KEYS);
             
             //datos es como un array de datos

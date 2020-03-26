@@ -7,6 +7,7 @@ package ventanas;
 
 import conexion.Conexion;
 import controlador.ControladorVehiculo;
+import java.awt.Frame;
 import javax.swing.JOptionPane;
 import modelo.Vehiculo;
 
@@ -16,15 +17,12 @@ import modelo.Vehiculo;
  */
 public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     private ControladorVehiculo cv;
-//    private Conexion conexion;
     private Vehiculo vehiculo;
     /**
      * Creates new form InternalFrmVehiculo
      */
     public InternalFrmVehiculo() {
         initComponents();
-//        conexion = new Conexion();
-//        conexion.Conectar();
         cv = new ControladorVehiculo();
     }
 
@@ -217,9 +215,9 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-//        vehiculo.setPlaca(vehiculo.getPlaca());
-//        vehiculo.setDescripcion(this.TxtDescripcion.getText());
-//        cv.actualizar(vehiculo);
+        vehiculo.setPlaca(vehiculo.getPlaca());
+        vehiculo.setDescripcion(this.TxtDescripcion.getText());
+        cv.actualizar(vehiculo);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
@@ -228,16 +226,18 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
-//        if (cv.eliminar(vehiculo)) {
-//            vehiculo = null;
-//            System.out.println("Se logro eliminar");
-//        }else{
-//            System.out.println("No se puedo eliminar");
-//        }
+        if (cv.eliminar(vehiculo)) {
+            vehiculo = null;
+            System.out.println("Se logro eliminar");
+        }else{
+            System.out.println("No se puedo eliminar");
+        }
     }//GEN-LAST:event_jButtonEliminarActionPerformed
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        
+        Frame f = JOptionPane.getFrameForComponent(this);
+        jDialogBuscarVehiculo dialog = new jDialogBuscarVehiculo(f,true);
+        dialog.setVisible(true);
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     public boolean Camposllenos() {
