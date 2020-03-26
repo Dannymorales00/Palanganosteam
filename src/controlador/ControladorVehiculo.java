@@ -31,6 +31,15 @@ public class ControladorVehiculo {;
        this.sentencias= conn.getSentencias();
        this.datos=conn.getDatos();
     }
+
+    public ControladorVehiculo(Conexion conn) {
+        this.conn = conn;
+        this.sentencias= conn.getSentencias();
+        this.datos=conn.getDatos();
+    }
+    
+    
+    
     
         
     public boolean añadir(Vehiculo vehiculo){
@@ -89,24 +98,26 @@ public class ControladorVehiculo {;
             }
             return false;
     }
-        
+     
+    
+    
     public ArrayList<Vehiculo> listar(String descripcion){
-            ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+            ArrayList<Vehiculo> vehiculos = new ArrayList();
             try {
-                this.datos = this.sentencias.executeQuery("select * from vehiculos where descripcion like '"+descripcion+"'");
+                this.datos = this.sentencias.executeQuery("select * from vehiculos where descripcion='"+descripcion+"'");
                 
                 while(datos.next())
-            {
-               Vehiculo vehiculo = new Vehiculo(datos.getString(2),datos.getString(3));
+                {
+                     Vehiculo vehiculo = new Vehiculo(datos.getString(2),datos.getString(3));
                
-               vehiculos.add(vehiculo);
+                    vehiculos.add(vehiculo);
             
             }
-    
+                return vehiculos; 
             } catch (SQLException ex) {
                 System.out.println("Error al listar");
             }
-           return vehiculos; 
+           return null; 
     }
         
     public boolean ValidarPK(Vehiculo vehiculo){
