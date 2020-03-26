@@ -7,7 +7,6 @@ package ventanas;
 
 import conexion.Conexion;
 import controlador.ControladorVehiculo;
-import javax.swing.JOptionPane;
 import modelo.Vehiculo;
 
 /**
@@ -16,16 +15,16 @@ import modelo.Vehiculo;
  */
 public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     private ControladorVehiculo cv;
-    private Conexion conexion;
+//    private Conexion conexion;
     private Vehiculo vehiculo;
     /**
      * Creates new form InternalFrmVehiculo
      */
     public InternalFrmVehiculo() {
         initComponents();
-        conexion = new Conexion();
-        conexion.Conectar();
-//        cv = new ControladorVehiculo(conexion);
+//        conexion = new Conexion();
+//        conexion.Conectar();
+        cv = new ControladorVehiculo();
     }
 
     /**

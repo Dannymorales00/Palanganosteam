@@ -15,7 +15,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private FrmConfiguracion frmconfig;
     private InternalFrmVehiculo interFrmvehiculo;
     private InternalFrmLlegada internalFrmLlegada; 
-    private Conexion conexion = new Conexion();
+    private static Conexion conexion = new Conexion();
     /**
      * Creates new form FrmMenu
      */
@@ -28,6 +28,15 @@ public class FrmMenu extends javax.swing.JFrame {
     
     }
 
+    public static Conexion getConexion() {
+        return conexion;
+    }
+
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
