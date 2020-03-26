@@ -217,9 +217,14 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-      vehiculo.setPlaca(TxtPlaca.getText());
-      vehiculo.setDescripcion(this.TxtDescripcion.getText());
-       cv.actualizar(vehiculo);
+        if (Camposllenos()) {
+            vehiculo.setPlaca(TxtPlaca.getText());
+            vehiculo.setDescripcion(this.TxtDescripcion.getText());
+            cv.actualizar(vehiculo);
+        }else {
+            JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
+       } 
+      
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed

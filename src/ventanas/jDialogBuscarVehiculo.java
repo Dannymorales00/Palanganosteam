@@ -7,9 +7,6 @@ package ventanas;
 
 import controlador.ControladorVehiculo;
 import java.util.ArrayList;
-import javax.swing.JTable;
-import javax.swing.table.DefaultTableModel;
-import javax.swing.table.TableModel;
 import modelo.Vehiculo;
 
 /**
@@ -79,9 +76,24 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
 
             },
             new String [] {
-
+                "Placa", "Descripcion"
             }
-        ));
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jButtonBuscar.setText("Buscar");
@@ -142,28 +154,35 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
-        vehiculos = cv.listar(this.TextDescripcion.getText());
+       
+       vehiculos = cv.listar(this.TextDescripcion.getText());
         
-        String col[] = {"Placa","Descripcion"};
-        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
+       this.mostar(vehiculos);
         
-        this.jTable1 = new JTable(tableModel);        
-        
-        Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
-
-        tableModel.addRow(objs);
-        
-//        for (int i = 0; i < vehiculos.size(); i++) {
-//            String placa = vehiculos.get(i).getPlaca();
-//            String descripcion = vehiculos.get(i).getDescripcion();
-//            
-//            
-//            String[] datos = {placa,descripcion};
-//        
-//            tableModel.insertRow(i,datos);
-//        }
+       this.TextDescripcion.setText("");
+       
     }//GEN-LAST:event_jButtonBuscarActionPerformed
       
+    public void mostar(ArrayList<Vehiculo> vehiculos){
+        System.out.println(vehiculos);
+        String matriz[][] = new String[vehiculos.size()][2];
+        
+        for (int i = 0; i < vehiculos.size(); i++) {
+            
+            matriz[i][0]=vehiculos.get(i).getPlaca();
+            matriz[i][1]=vehiculos.get(i).getDescripcion();
+            
+        }
+        
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            matriz,
+            new String [] {
+                "Placa", "Descripcion"
+            }
+        ));
+        
+    }
+    
     /**
      * @param args the command line arguments
      */
