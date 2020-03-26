@@ -23,6 +23,7 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
      */
     public InternalFrmVehiculo() {
         initComponents();
+        vehiculo = new Vehiculo();
         cv = new ControladorVehiculo();
     }
 
@@ -204,7 +205,8 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if (Camposllenos()) {
-            vehiculo = new Vehiculo(this.TxtPlaca.getText(),this.TxtDescripcion.getText());
+            vehiculo.setDescripcion(TxtDescripcion.getText());
+            vehiculo.setPlaca(TxtPlaca.getText());
              if (cv.ValidarPK(vehiculo)) {
                 cv.añadir(vehiculo);
                 

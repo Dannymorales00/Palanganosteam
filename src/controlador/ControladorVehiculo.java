@@ -70,8 +70,8 @@ public class ControladorVehiculo {;
         
     public boolean actualizar(Vehiculo vehiculo){
             try {
-            sentencias.executeUpdate("update vehiculos set descripcion='"+vehiculo.getDescripcion()+"' where placa="+vehiculo.getPlaca());
-            
+            sentencias.executeUpdate("UPDATE vehiculos SET descripcion='"+vehiculo.getDescripcion()+"' WHERE placa ='"+vehiculo.getPlaca()+"';");
+              
             return true;
         } catch (SQLException ex) {
             System.out.println("Error al actualizar");
