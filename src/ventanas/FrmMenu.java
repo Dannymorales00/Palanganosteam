@@ -79,7 +79,7 @@ public class FrmMenu extends javax.swing.JFrame {
         });
         jMenuRegistar.add(jMenuItemVehiculos);
 
-        jMenuItemEntrada.setText("Entradas");
+        jMenuItemEntrada.setText("Llegadas");
         jMenuItemEntrada.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jMenuItemEntradaActionPerformed(evt);
