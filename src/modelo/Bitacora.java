@@ -69,6 +69,10 @@ public class Bitacora {
                !=null && this.destino!=null ;
     }
 
+    public void setPlaca(String placa) {
+        this.placa = placa;
+    }
+
     public String getPlaca() {
         return placa;
     }

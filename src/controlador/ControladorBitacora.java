@@ -30,8 +30,7 @@ public class ControladorBitacora {
         this.conn = conn;
     }
  
-    
-       public boolean añadir(Bitacora bitacora){
+    public boolean añadir(Bitacora bitacora){
         try {
             sentencias.executeUpdate("insert into bitacoras values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','"+bitacora.getFechasalida()+"','"+bitacora.getHorasalida()+"','"+bitacora.getKinicial()+"','"+bitacora.getFechallegada()+"','"+bitacora.getHorallegada()+"','"+bitacora.getKfinal()+"')",sentencias.RETURN_GENERATED_KEYS);
             datos = sentencias.getGeneratedKeys();
@@ -47,25 +46,46 @@ public class ControladorBitacora {
     }
     
     
-        public Bitacora buscar(int placa){
-            try {
+    public Bitacora buscar(int placa){
+        
+        try {
             
             this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+placa);
             
             if(datos.next())
             {
-                System.out.println(datos.getInt(1));
                 System.out.println(datos.getString(2));
                 System.out.println(datos.getString(3));
-            
-            }else 
-                return null;
+                System.out.println(datos.getString(4));
+                System.out.println(datos.getDate(5));
+                System.out.println(datos.getTime(6));
+                System.out.println(datos.getInt(7));
+                System.out.println(datos.getDate(8));
+                System.out.println(datos.getTime(9));
+                System.out.println(datos.getInt(10));
+                
+                Bitacora bitacora = new Bitacora();
+                bitacora.setPlaca(datos.getString(2));
+                bitacora.setProvincia(datos.getString(3));
+                bitacora.setDestino(datos.getString(4));
+                bitacora.setFechasalida(datos.getDate(5));
+                bitacora.setHorasalida(datos.getTime(6));
+                bitacora.setKinicial(datos.getInt(7));
+                bitacora.setFechallegada(datos.getDate(8));
+                bitacora.setHorallegada(datos.getTime(9));
+                bitacora.setKfinal(datos.getInt(10));
+                return bitacora;
             }
-            catch (SQLException ex) {
+                
+            }catch (SQLException ex) {
                 System.out.println("Error al buscar");
             }
             return null;
-    }    
+    } 
+    
+    
+    
+       
        
        
     
