@@ -70,7 +70,7 @@ public class ControladorVehiculo {;
         
     public boolean actualizar(Vehiculo vehiculo){
             try {
-            sentencias.executeUpdate("insert into vehiculos values(null,'"+vehiculo.getPlaca()+"','"+vehiculo.getDescripcion()+"')");
+            sentencias.executeUpdate("update into vehiculos values(null,'"+vehiculo.getPlaca()+"','"+vehiculo.getDescripcion()+"')");
               
             return true;
         } catch (SQLException ex) {
