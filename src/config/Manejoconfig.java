@@ -6,6 +6,7 @@
 package config;
 import java.io.File;
 import org.ini4j.*;
+import ventanas.FrmConfiguracion;
 /**
  *
  * @author Danny_PC
@@ -51,6 +52,9 @@ public class Manejoconfig {
         // Para atrapar cual excepción relacionada a encontrar el archivo 
         }catch(Exception e){
             System.out.println("error al leer el archivo config.ini");
+            FrmConfiguracion frmconfig = new FrmConfiguracion();
+            frmconfig.setVisible(true);
+            frmconfig.setAlwaysOnTop(true);
             System.err.println(e.getMessage());
             return null;
         }
