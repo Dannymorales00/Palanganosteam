@@ -34,11 +34,16 @@ public class ControladorBitacora {
         try {
             sentencias.executeUpdate("insert into bitacoras values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"','"+bitacora.getFechasalida()+"','"+bitacora.getHorasalida()+"','"+bitacora.getKinicial()+"','"+bitacora.getFechallegada()+"','"+bitacora.getHorallegada()+"','"+bitacora.getKfinal()+"')",sentencias.RETURN_GENERATED_KEYS);
             datos = sentencias.getGeneratedKeys();
-            if (datos.next()) {
-                System.out.println(datos.getInt(1));
+            if (datos.next()) 
+            {
+                
+               
+                System.out.println(datos.getInt(2));
+                System.out.println(datos.getInt(3));
          
             }   
             return true;
+            
         } catch (SQLException ex) {
             System.out.println("Error al añadir");
         }
