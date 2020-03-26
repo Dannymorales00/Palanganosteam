@@ -7,6 +7,9 @@ package ventanas;
 
 import controlador.ControladorVehiculo;
 import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableModel;
 import modelo.Vehiculo;
 
 /**
@@ -76,24 +79,9 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
 
             },
             new String [] {
-                "Placa", "Descripcion"
-            }
-        ) {
-            Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class
-            };
-            boolean[] canEdit = new boolean [] {
-                false, false
-            };
 
-            public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
             }
-
-            public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit [columnIndex];
-            }
-        });
+        ));
         jScrollPane1.setViewportView(jTable1);
 
         jButtonBuscar.setText("Buscar");
@@ -156,15 +144,24 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
     private void jButtonBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonBuscarActionPerformed
         vehiculos = cv.listar(this.TextDescripcion.getText());
         
-        for (int i = 0; i < vehiculos.size(); i++) {
-            String placa = vehiculos.get(i).getPlaca();
-            String descripcion = vehiculos.get(i).getDescripcion();
-            
-            
-            String[] datos = {placa,descripcion};
+        String col[] = {"Placa","Descripcion"};
+        DefaultTableModel tableModel = new DefaultTableModel(col, 0);
         
+        this.jTable1 = new JTable(tableModel);        
         
-        }
+        Object[] objs = {1, "Arsenal", 35, 11, 2, 2, 15, 30, 11, 19};
+
+        tableModel.addRow(objs);
+        
+//        for (int i = 0; i < vehiculos.size(); i++) {
+//            String placa = vehiculos.get(i).getPlaca();
+//            String descripcion = vehiculos.get(i).getDescripcion();
+//            
+//            
+//            String[] datos = {placa,descripcion};
+//        
+//            tableModel.insertRow(i,datos);
+//        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
       
     /**

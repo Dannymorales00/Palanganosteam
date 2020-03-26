@@ -32,7 +32,7 @@ public class FrmMenu extends javax.swing.JFrame {
     public static Conexion getConexion() {
         return conexion;
     }
-
+    
     
     
     
