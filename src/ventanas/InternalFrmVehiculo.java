@@ -215,9 +215,9 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButtonGuardarActionPerformed
 
     private void jButtonModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonModificarActionPerformed
-        vehiculo.setPlaca(vehiculo.getPlaca());
-        vehiculo.setDescripcion(this.TxtDescripcion.getText());
-        cv.actualizar(vehiculo);
+       vehiculo.setPlaca(TxtPlaca.getText());
+      vehiculo.setDescripcion(this.TxtDescripcion.getText());
+       cv.actualizar(vehiculo);
     }//GEN-LAST:event_jButtonModificarActionPerformed
 
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed

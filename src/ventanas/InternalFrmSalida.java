@@ -6,6 +6,7 @@
 package ventanas;
 
 import controlador.ControladorVehiculo;
+import javax.swing.JOptionPane;
 import modelo.Bitacora;
 import modelo.Vehiculo;
 
@@ -270,10 +271,10 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.vehiculo.setPlaca(this.placaTxt.getText());
         if (contrVehiculo.ValidarPK(vehiculo)) {
-            
+            descripcionTxt.setText(contrVehiculo.buscar(vehiculo.getPlaca()).getDescripcion());
+        }else{
+            JOptionPane.showMessageDialog(this, "El vehículo ingresado no existe");
         }
-
-        
     }//GEN-LAST:event_jButton1ActionPerformed
 
 

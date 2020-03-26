@@ -43,7 +43,7 @@ public class ControladorVehiculo {;
         return false;
     }
         
-    public Vehiculo buscar(int placa){
+    public Vehiculo buscar(String placa){
         try {
             
             this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+placa);
@@ -112,11 +112,8 @@ public class ControladorVehiculo {;
     public boolean ValidarPK(Vehiculo vehiculo){
         
         try {
-            this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+vehiculo.getPlaca());
-                
-            if (datos.next()) {
-                return false;
-            }
+            return this.sentencias.execute("select * from vehiculos where placa="+vehiculo.getPlaca());
+              
                 
         } catch (SQLException ex) {
             System.out.println("Error al validar");
