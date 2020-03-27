@@ -65,6 +65,7 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         BtnGuardar = new javax.swing.JButton();
 
         setClosable(true);
+        setTitle("Salidas");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
