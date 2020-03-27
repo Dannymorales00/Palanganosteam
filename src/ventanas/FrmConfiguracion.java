@@ -18,7 +18,7 @@ import javax.swing.filechooser.FileNameExtensionFilter;
  * @author Danny_PC
  */
 public class FrmConfiguracion extends javax.swing.JFrame {
-    private boolean ArchivoAbierto = false;
+  
     private String ruta = "";
     private JFileChooser FileCho = null;
     private File archivo = null;
