@@ -6,9 +6,12 @@
 package ventanas;
 
 import controlador.ControladorBitacora;
+import controlador.ControladorVehiculo;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 import modelo.Bitacora;
+import modelo.Vehiculo;
    
     
 /**
@@ -16,6 +19,8 @@ import modelo.Bitacora;
  * @author Danny_PC
  */
 public class InternalFrmLlegada extends javax.swing.JInternalFrame {
+    private Vehiculo vehiculo;
+    private ControladorVehiculo cv;
     private Bitacora bitacora = new Bitacora();
     private ControladorBitacora cb = new ControladorBitacora();
     private ArrayList<Bitacora> bitacoras = new ArrayList();       
@@ -266,17 +271,26 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         bitacoras = cb.listar(this.TxtPlaca.getText());
         
         bitacora = bitacoras.get(bitacoras.size()-1);
+        if (!"".equals(this.TxtPlaca.getText())) {
+            vehiculo.setPlaca(this.TxtPlaca.getText());
+            if (!cv.ValidarPK(vehiculo)) {
+                
+                this.TxtDescripcion.setText(cv.buscar(vehiculo.getPlaca()).getDescripcion());
+                
+            }
         
-        this.TxtDestino.setText(bitacora.getDestino());
-        
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        String fechaString = sdf.format(bitacora.getFechasalida());
-        this.TxtFechaSalida.setText(fechaString);
-        
-        this.TxtHoraSalida.setText(bitacora.getHorasalida().toString());
-        this.jComboBox1.addItem(bitacora.getProvincia());
-        this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
-               
+            this.TxtDestino.setText(bitacora.getDestino());
+
+            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+            String fechaString = sdf.format(bitacora.getFechasalida());
+            this.TxtFechaSalida.setText(fechaString);
+
+            this.TxtHoraSalida.setText(bitacora.getHorasalida().toString());
+            this.jComboBox1.addItem(bitacora.getProvincia());
+            this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
+        }else{
+            JOptionPane.showMessageDialog(this, "Rellene el campo de placa");
+        }    
     }//GEN-LAST:event_BtnCargarActionPerformed
 
 
