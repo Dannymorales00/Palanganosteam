@@ -300,15 +300,16 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         if(!this.descripcionTxt.equals("") && !this.placaTxt.equals("") && !this.destinoTxt.equals("") && !this.provinciaCb.equals("") && !this.kilometrajeSp.equals(""))
         {
           
-                bitacora= new Bitacora();
-                bitacora.setPlaca(this.placaTxt.getText());
-                bitacora.setDestino(this.destinoTxt.getText());
-                bitacora.setProvincia(String.valueOf( this.provinciaCb.getSelectedItem()));
-                bitacora.setKinicial((int) this.kilometrajeSp.getValue());
+            bitacora= new Bitacora();
+            bitacora.setPlaca(this.placaTxt.getText());
+            bitacora.setDestino(this.destinoTxt.getText());
+            bitacora.setProvincia(String.valueOf( this.provinciaCb.getSelectedItem()));
+            bitacora.setKinicial((int) this.kilometrajeSp.getValue());
                
                 if(cb.ValidarFK(bitacora))
                 {
-                    if(cb.añadir(bitacora))
+                   
+                    if( cb.ValidarPK(bitacora) && cb.añadir(bitacora))
                     {
                       JOptionPane.showMessageDialog(this, "Vehiculo agregado");
                     }

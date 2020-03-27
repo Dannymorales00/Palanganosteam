@@ -146,7 +146,13 @@ public class ControladorBitacora {
             this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+bitacora.getPlaca());
                 
             if (datos.next()) {
-                return false;
+                
+                if(datos.getInt(10)== 0 && datos.getTime(9)== null && datos.getDate(8)== null){
+                    System.out.println("se encontro una bitacora con valores nulos");
+                    return false;
+                }
+                
+            
             }
                 
         } catch (SQLException ex) {
@@ -164,7 +170,7 @@ public class ControladorBitacora {
                 
             if (datos.next()) 
             {
-                System.out.println("si existe el vehiculo FK");
+            
                 result=true;
               
             }
