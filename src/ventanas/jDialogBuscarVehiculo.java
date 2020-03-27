@@ -29,6 +29,8 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
         initComponents();
        
         cv = new ControladorVehiculo();
+        placa="";
+        descripcion="";
     }
 
     public String getPlaca() {
