@@ -30,6 +30,7 @@ public class FrmConfiguracion extends javax.swing.JFrame {
      */
     public FrmConfiguracion() {
         initComponents();
+        this.setAlwaysOnTop( true );
     }
 
     /**
