@@ -36,22 +36,16 @@ public class ControladorBitacora {
     }
  
     public boolean añadir(Bitacora bitacora){
-        try {
-            sentencias.executeUpdate("insert into bitacora values(null,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"',CURDATE(),CURTIME(),'"+bitacora.getKinicial()+"',null,null,null)",sentencias.RETURN_GENERATED_KEYS);
-            datos = sentencias.getGeneratedKeys();
-            if (datos.next()) 
-            {
-                
-               
-                System.out.println(datos.getInt(2));
-                System.out.println(datos.getInt(3));
-         
-            }   
+        try 
+        {
+            sentencias.executeUpdate("insert into bitacora values(NULL,'"+bitacora.getPlaca()+"','"+bitacora.getProvincia()+"','"+bitacora.getDestino()+"',CURDATE(),CURTIME(),'"+bitacora.getKinicial()+"',NULL,NULL,NULL)");
+     
             return true;
             
-        } catch (SQLException ex) {
+        }catch (Exception e) 
+            {
             System.out.println("Error al añadir una bitacora");
-        }
+            }
         return false;
     }
     
@@ -111,7 +105,7 @@ public class ControladorBitacora {
     public boolean actualizar(Bitacora bitacora){
             try {  
               
-            sentencias.executeUpdate("UPDATE bitacora SET fechallegada='CURDATE()',horallegada='CURTIME()',kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
+            this.sentencias.executeUpdate("UPDATE bitacora SET fechallegada='CURDATE()',horallegada='CURTIME()',kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
               
             return true;
         } catch (SQLException ex) {

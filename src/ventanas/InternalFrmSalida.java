@@ -282,11 +282,17 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                
                 if(cb.ValidarFK(bitacora))
                 {
-                    cb.añadir(bitacora);
+                    if(cb.añadir(bitacora))
+                    {
+                        System.out.println("vehiculo agregado");
+                    }
                     
-                }else{System.out.println("ya no existe ese vehiculo");}
+                }else{System.out.println("no existe ese vehiculo");}
              
-        }else{System.out.println("campos requeridos vacios");}
+        }else{
+         
+            System.out.println("campos requeridos vacios");
+        }
         
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
