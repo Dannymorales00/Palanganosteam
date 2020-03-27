@@ -201,7 +201,7 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
 
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
         
-        
+         //para cerrar solo tipos jdialog
          this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));  
     
       
