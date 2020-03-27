@@ -104,7 +104,7 @@ public class ControladorVehiculo {;
     public ArrayList<Vehiculo> listar(String descripcion){
             ArrayList<Vehiculo> vehiculos = new ArrayList();
             try {
-                this.datos = this.sentencias.executeQuery("select * from vehiculos where descripcion='"+descripcion+"'");
+                this.datos = this.sentencias.executeQuery("select * from vehiculos where descripcion like'"+descripcion+"%'");
                 
                 while(datos.next())
                 {
@@ -133,7 +133,7 @@ public class ControladorVehiculo {;
     }
        
     public ArrayList<Vehiculo> todosLosVehiculos(){
-        ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
         try {
             this.datos = this.sentencias.executeQuery("select * from vehiculos");
             
