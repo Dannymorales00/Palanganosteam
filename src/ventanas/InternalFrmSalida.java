@@ -310,14 +310,14 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                 {
                     if(cb.añadir(bitacora))
                     {
-                        System.out.println("vehiculo agregado");
+                      JOptionPane.showMessageDialog(this, "Vehiculo agregado");
                     }
                     
-                }else{System.out.println("no existe ese vehiculo");}
+                }else{  JOptionPane.showMessageDialog(this, "No existe ese vehiculo");}
              
         }else{
          
-            System.out.println("campos requeridos vacios");
+              JOptionPane.showMessageDialog(this, "Campos requeridos vacíos");
         }
         
         
@@ -343,10 +343,12 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_placaTxtKeyPressed
 
     private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
-        if ("".equals(placaTxt.getText())) {
+        if (!"".equals(placaTxt.getText())) {
             vehiclo.setPlaca(placaTxt.getText());
             if (!cv.ValidarPK(vehiclo)) {
-                descripcionTxt.setText(cv.buscar(vehiclo.getPlaca()).getPlaca());
+                descripcionTxt.setEditable(true);
+                descripcionTxt.setText(cv.buscar(vehiclo.getPlaca()).getDescripcion());
+                descripcionTxt.setEditable(false);
             }
         }else{
             JOptionPane.showMessageDialog(this, "Rellene el campo de placa");
