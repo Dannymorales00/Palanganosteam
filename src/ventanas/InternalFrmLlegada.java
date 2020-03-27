@@ -271,6 +271,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         bitacoras = cb.listar(this.TxtPlaca.getText());
         
         bitacora = bitacoras.get(bitacoras.size()-1);
+        
         if (!"".equals(this.TxtPlaca.getText())) {
             vehiculo.setPlaca(this.TxtPlaca.getText());
             if (!cv.ValidarPK(vehiculo)) {
