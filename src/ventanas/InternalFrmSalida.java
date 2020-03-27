@@ -6,6 +6,9 @@
 package ventanas;
 
 import controlador.ControladorBitacora;
+import java.beans.PropertyVetoException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import modelo.Bitacora;
 
 
@@ -61,6 +64,8 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         kilometrajeSp = new javax.swing.JSpinner();
         BtnCancelar = new javax.swing.JButton();
         BtnGuardar = new javax.swing.JButton();
+
+        setClosable(true);
 
         jPanel1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
@@ -208,6 +213,11 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 
         BtnCancelar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
 
         BtnGuardar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         BtnGuardar.setText("Guardar");
@@ -305,6 +315,17 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 //            JOptionPane.showMessageDialog(this, "El vehículo ingresado no existe");
 //        }
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+      
+        
+        
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(InternalFrmSalida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_BtnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
