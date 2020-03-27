@@ -48,7 +48,6 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jLabel1 = new javax.swing.JLabel();
         placaTxt = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcionTxt = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
@@ -79,14 +78,6 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jLabel2.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel2.setText("Descripción:");
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        jButton1.setText("Buscar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
         descripcionTxt.setEditable(false);
         descripcionTxt.setColumns(20);
         descripcionTxt.setRows(5);
@@ -97,15 +88,10 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))))
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jScrollPane1)
@@ -120,11 +106,8 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                     .addComponent(jLabel1)
                     .addComponent(placaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton1))
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
@@ -135,7 +118,7 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jLabel3.setText("Provincia:");
 
         provinciaCb.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        provinciaCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Provincia", "Guancaste", "Alajuela", "San José", "Limón", "Heredia", "Cartago", "Puntarenas" }));
+        provinciaCb.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccionar Provincia", "Guanacaste", "Alajuela", "San José", "Limón", "Heredia", "Cartago", "Puntarenas" }));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel4.setText("Destino:");
@@ -307,15 +290,6 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-//        this.vehiculo.setPlaca(this.placaTxt.getText());
-//        if (contrVehiculo.ValidarPK(vehiculo)) {
-//            descripcionTxt.setText(contrVehiculo.buscar(vehiculo.getPlaca()).getDescripcion());
-//        }else{
-//            JOptionPane.showMessageDialog(this, "El vehículo ingresado no existe");
-//        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
       
         
@@ -335,7 +309,6 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     private javax.swing.JTextField destinoTxt;
     private javax.swing.JTextField fechaSalidatxt;
     private javax.swing.JTextField horaSalidaTxt;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
