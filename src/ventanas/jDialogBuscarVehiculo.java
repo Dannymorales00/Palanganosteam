@@ -6,8 +6,13 @@
 package ventanas;
 
 import controlador.ControladorVehiculo;
+import java.awt.event.WindowEvent;
+import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-import javax.swing.table.DefaultTableModel;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JTextField;
+
 import modelo.Vehiculo;
 
 /**
@@ -17,15 +22,33 @@ import modelo.Vehiculo;
 public class jDialogBuscarVehiculo extends javax.swing.JDialog {
     private ArrayList <Vehiculo> vehiculos;
     private ControladorVehiculo cv;
+    private String placa;
+    private String descripcion;
     /**
      * Creates new form jDialogBuscarVehiculo
      */
     public jDialogBuscarVehiculo(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+       
         cv = new ControladorVehiculo();
     }
 
+    public String getPlaca() {
+        return placa;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+
+
+    
+    
+    
+    
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -173,27 +196,42 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
        
        vehiculos = cv.listar(this.TextDescripcion.getText());
         
-       this.mostar(vehiculos);
+       this.mostrar(vehiculos);
         
        this.TextDescripcion.setText("");
        
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
-        String placa="";
         
-        for (int i = 0; i < this.jTable1.getColumnCount(); i++) {
-             placa =  this.jTable1.getValueAt(this.jTable1.getSelectedRow(), i).toString();
-              System.out.println(placa);
-        }    
+        
+         this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));  
+    
+        
+        
+     
+//        String placa="";
+//        
+//        for (int i = 0; i < this.jTable1.getColumnCount(); i++) {
+//             placa =  this.jTable1.getValueAt(this.jTable1.getSelectedRow(), i).toString();
+//              System.out.println(placa);
+//        }    
     }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         int seleccion = this.jTable1.rowAtPoint(evt.getPoint());
+        
         this.TextDescripcion.setText(String.valueOf(this.jTable1.getValueAt(seleccion, 0)));
+        
+        placa= String.valueOf(this.jTable1.getValueAt(seleccion, 0));
+        descripcion=String.valueOf(this.jTable1.getValueAt(seleccion, 1));
+        
+        System.out.println("placa: "+String.valueOf(this.jTable1.getValueAt(seleccion, 0)));
+        System.out.println("descripcion: "+String.valueOf(this.jTable1.getValueAt(seleccion, 1)));
+  
     }//GEN-LAST:event_jTable1MouseClicked
       
-    public void mostar(ArrayList<Vehiculo> vehiculos){
+    public void mostrar(ArrayList<Vehiculo> vehiculos){
         
         String matriz[][] = new String[vehiculos.size()][2];
         

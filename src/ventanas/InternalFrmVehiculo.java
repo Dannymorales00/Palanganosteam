@@ -5,7 +5,7 @@
  */
 package ventanas;
 
-import conexion.Conexion;
+
 import controlador.ControladorVehiculo;
 import java.awt.Frame;
 import javax.swing.JOptionPane;
@@ -248,8 +248,20 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
         Frame f = JOptionPane.getFrameForComponent(this);
         jDialogBuscarVehiculo dialog = new jDialogBuscarVehiculo(f,true);
         dialog.setVisible(true);
+        
+        if(!dialog.getPlaca().equals("")){
+            vehiculo.setPlaca(dialog.getPlaca());
+            vehiculo.setDescripcion(dialog.getDescripcion());
+            this.TxtPlaca.setText(this.vehiculo.getPlaca());
+            this.TxtDescripcion.setText(this.vehiculo.getDescripcion());
+        }else
+        {
+            System.out.println("no ha seleccionado ningun vehiculo");
+        
+        }
     }//GEN-LAST:event_jButtonBuscarActionPerformed
 
+    
     public boolean Camposllenos() {
         return !(this.TxtPlaca.getText().equals("") || this.TxtDescripcion.getText().equals("")) ;
         
