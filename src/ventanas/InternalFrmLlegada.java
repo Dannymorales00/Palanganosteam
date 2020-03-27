@@ -21,7 +21,7 @@ import modelo.Vehiculo;
 public class InternalFrmLlegada extends javax.swing.JInternalFrame {
     private Vehiculo vehiculo = new Vehiculo();
     private ControladorVehiculo cv = new ControladorVehiculo();
-    private Bitacora bitacora = new Bitacora();
+    private Bitacora bitacora ;
     private ControladorBitacora cb = new ControladorBitacora();
     private ArrayList<Bitacora> bitacoras = new ArrayList();       
     /**
@@ -163,6 +163,8 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
         jLabel7.setText("Kilometraje Inicial");
 
+        txtKilometrajeInicial.setEditable(false);
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -219,6 +221,11 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         );
 
         BtnGuardar.setText("Guardar");
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
 
         BtnCancelar.setText("Cancelar");
 
@@ -293,6 +300,10 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(this, "Rellene el campo de placa");
         }    
     }//GEN-LAST:event_BtnCargarActionPerformed
+
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        
+    }//GEN-LAST:event_BtnGuardarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
