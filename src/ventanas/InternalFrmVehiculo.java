@@ -213,7 +213,9 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
              if (cv.ValidarPK(vehiculo)) {
                 cv.añadir(vehiculo);
                 
-            }    
+            }else{
+                 JOptionPane.showMessageDialog(this, "El auto que intenta ingresar ya existe");
+             }    
         }else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
        } 

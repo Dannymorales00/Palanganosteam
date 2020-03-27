@@ -123,8 +123,10 @@ public class ControladorVehiculo {;
     public boolean ValidarPK(Vehiculo vehiculo){
         
         try {
-            return this.sentencias.execute("select * from vehiculos where placa="+vehiculo.getPlaca());
-              
+           this.datos = this.sentencias.executeQuery("select * from vehiculos where placa="+vehiculo.getPlaca());
+              if (this.datos.next()) {
+                return false;
+            }
                 
         } catch (SQLException ex) {
             System.out.println("Error al validar");
