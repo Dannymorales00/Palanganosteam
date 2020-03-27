@@ -17,7 +17,7 @@ import modelo.Vehiculo;
  */
 public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     private ControladorVehiculo cv;
-    static Vehiculo vehiculo;
+    private Vehiculo vehiculo;
 
     
 
@@ -203,17 +203,23 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
 
     private void jButtonNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonNuevoActionPerformed
         this.TxtPlaca.setText("");
+          this.TxtPlaca.setEditable(true);
         this.TxtDescripcion.setText("");
     }//GEN-LAST:event_jButtonNuevoActionPerformed
 
     private void jButtonGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonGuardarActionPerformed
         if (Camposllenos()) {
             vehiculo.setDescripcion(TxtDescripcion.getText());
-            vehiculo.setPlaca(TxtPlaca.getText());
-             if (cv.ValidarPK(vehiculo)) {
+            vehiculo.setPlaca(this.TxtPlaca.getText());
+            
+            if (cv.ValidarPK(vehiculo)) {
                 cv.añadir(vehiculo);
+                this.TxtPlaca.setEditable(false);
                 
-            }    
+            }else{
+                System.out.println("ese vehiculo ya existe");
+            }
+            
         }else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
        } 
@@ -224,6 +230,7 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
             vehiculo.setPlaca(TxtPlaca.getText());
             vehiculo.setDescripcion(this.TxtDescripcion.getText());
             cv.actualizar(vehiculo);
+            this.TxtPlaca.setEditable(false);
         }else {
             JOptionPane.showMessageDialog(null, "Debe llenar todos los campos");
        } 
@@ -233,11 +240,13 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     private void jButtonCancelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonCancelActionPerformed
         this.TxtPlaca.setText(this.vehiculo.getPlaca());
         this.TxtDescripcion.setText(this.vehiculo.getDescripcion());
+        this.TxtPlaca.setEditable(false);
     }//GEN-LAST:event_jButtonCancelActionPerformed
 
     private void jButtonEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonEliminarActionPerformed
         if (cv.eliminar(vehiculo)) {
             vehiculo = null;
+            this.TxtPlaca.setEditable(false);
             System.out.println("Se logro eliminar");
         }else{
             System.out.println("No se puedo eliminar");
@@ -268,8 +277,8 @@ public class InternalFrmVehiculo extends javax.swing.JInternalFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    public static javax.swing.JTextField TxtDescripcion;
-    public static javax.swing.JTextField TxtPlaca;
+    public javax.swing.JTextField TxtDescripcion;
+    public javax.swing.JTextField TxtPlaca;
     private javax.swing.JButton jButtonBuscar;
     private javax.swing.JButton jButtonCancel;
     private javax.swing.JButton jButtonEliminar;
