@@ -7,11 +7,8 @@ package ventanas;
 
 import controlador.ControladorVehiculo;
 import java.awt.event.WindowEvent;
-import java.beans.PropertyVetoException;
 import java.util.ArrayList;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JTextField;
+
 
 import modelo.Vehiculo;
 
@@ -207,15 +204,7 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
         
          this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));  
     
-        
-        
-     
-//        String placa="";
-//        
-//        for (int i = 0; i < this.jTable1.getColumnCount(); i++) {
-//             placa =  this.jTable1.getValueAt(this.jTable1.getSelectedRow(), i).toString();
-//              System.out.println(placa);
-//        }    
+      
     }//GEN-LAST:event_jButtonSeleccionarActionPerformed
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
