@@ -19,8 +19,8 @@ import modelo.Vehiculo;
  * @author Danny_PC
  */
 public class InternalFrmLlegada extends javax.swing.JInternalFrame {
-    private Vehiculo vehiculo;
-    private ControladorVehiculo cv;
+    private Vehiculo vehiculo = new Vehiculo();
+    private ControladorVehiculo cv = new ControladorVehiculo();
     private Bitacora bitacora = new Bitacora();
     private ControladorBitacora cb = new ControladorBitacora();
     private ArrayList<Bitacora> bitacoras = new ArrayList();       
