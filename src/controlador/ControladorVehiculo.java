@@ -89,13 +89,13 @@ public class ControladorVehiculo {;
     }
         
     public boolean eliminar(Vehiculo vehiculo){
-            try {
+        try {
             this.sentencias.executeUpdate("delete from vehiculos where placa="+vehiculo.getPlaca());
+            return true;
             
-            
-            } catch (SQLException ex) {
+        } catch (SQLException ex) {
                 System.out.println("Error al borrar");
-            }
+        }
             return false;
     }
      
@@ -104,7 +104,7 @@ public class ControladorVehiculo {;
     public ArrayList<Vehiculo> listar(String descripcion){
             ArrayList<Vehiculo> vehiculos = new ArrayList();
             try {
-                this.datos = this.sentencias.executeQuery("select * from vehiculos where descripcion='"+descripcion+"'");
+                this.datos = this.sentencias.executeQuery("select * from vehiculos where descripcion like'"+descripcion+"%'");
                 
                 while(datos.next())
                 {
@@ -135,7 +135,7 @@ public class ControladorVehiculo {;
     }
        
     public ArrayList<Vehiculo> todosLosVehiculos(){
-        ArrayList<Vehiculo> vehiculos = new ArrayList<Vehiculo>();
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
         try {
             this.datos = this.sentencias.executeQuery("select * from vehiculos");
             

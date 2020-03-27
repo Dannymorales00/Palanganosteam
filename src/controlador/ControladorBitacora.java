@@ -120,21 +120,20 @@ public class ControladorBitacora {
     public ArrayList<Bitacora> listar(String placa){
             ArrayList<Bitacora> bitacoras = new ArrayList();
             try {
-                this.datos = this.sentencias.executeQuery("select * from bitacora where descripcion like '"+placa+"'");
+                this.datos = this.sentencias.executeQuery("select * from bitacora where placa='"+placa+"'");
                 
-                while(datos.next())
-            {
+                while(datos.next()){
               
                Bitacora bitacora = new Bitacora(datos.getString(2),datos.getString(3),datos.getString(4),datos.getDate(5),datos.getTime(6),datos.getInt(7),datos.getDate(8),datos.getTime(9),datos.getInt(10));
                
                bitacoras.add(bitacora);
-            
+               
             }
-    
+                return bitacoras;
             } catch (SQLException ex) {
                 System.out.println("Error al listar");
             }
-            return bitacoras; 
+            return null; 
     }
     
         

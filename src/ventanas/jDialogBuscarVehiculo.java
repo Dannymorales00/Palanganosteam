@@ -29,6 +29,8 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
         initComponents();
        
         cv = new ControladorVehiculo();
+        placa="";
+        descripcion="";
     }
 
     public String getPlaca() {
@@ -40,12 +42,6 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
     }
 
 
-
-    
-    
-    
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -201,7 +197,7 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
 
     private void jButtonSeleccionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonSeleccionarActionPerformed
         
-        
+         //para cerrar solo tipos jdialog
          this.processWindowEvent(new WindowEvent(this, WindowEvent.WINDOW_CLOSING));  
     
       
@@ -237,7 +233,6 @@ public class jDialogBuscarVehiculo extends javax.swing.JDialog {
                 "Placa", "Descripcion"
             }
         ));
-        
     }
     
     /**
