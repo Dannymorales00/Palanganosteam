@@ -134,7 +134,7 @@ public class ControladorBitacora {
     public boolean actualizar(Bitacora bitacora){
             try {  
               
-            this.sentencias.executeUpdate("UPDATE bitacora SET fechallegada='CURDATE()',horallegada='CURTIME()',kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
+            this.sentencias.executeUpdate("UPDATE bitacora SET fechallegada=CURDATE(),horallegada=CURTIME(),kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
               
             return true;
         } catch (SQLException ex) {

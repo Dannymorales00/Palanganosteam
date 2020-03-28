@@ -138,9 +138,13 @@ public class Bitacora {
     }
 
     public void setKfinal(int kfinal) {
-        if(this.kinicial<this.kfinal){
+        if(this.kfinal>this.kinicial){
+            
             this.kfinal = kfinal;
-        }else{System.out.println("el kilometraje final es menor al inicial");}
+            
+        }else{
+            System.out.println("valor kinicial: "+this.kinicial);
+            System.out.println("el kilometraje final es menor al inicial");}
     }
 
     

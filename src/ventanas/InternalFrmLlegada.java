@@ -281,7 +281,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         
         if (!"".equals(this.TxtPlaca.getText()))
         {
-            //retorna la ultima bitacora encontrada
+            //retorna la ultima bitacora encontrada o null
             bitacora =  cb.buscar( new Bitacora( this.TxtPlaca.getText() ) );
             
             if(bitacora != null ){
@@ -315,6 +315,17 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
       
+        if((int)this.SpinnerFinal.getValue()>0)
+        {
+         
+            bitacora.setKfinal((int)this.SpinnerFinal.getValue());
+            cb.actualizar(bitacora);
+        
+        
+        
+        
+        }
+        
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
