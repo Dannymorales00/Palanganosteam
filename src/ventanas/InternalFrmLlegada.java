@@ -275,37 +275,46 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
-        bitacoras = cb.listar(this.TxtPlaca.getText());
+      
         
-        bitacora = bitacoras.get(bitacoras.size()-1);
+      
         
-        if (!"".equals(this.TxtPlaca.getText())) {
-            vehiculo.setPlaca(this.TxtPlaca.getText());
-            if (!cv.ValidarPK(vehiculo)) {
+        if (!"".equals(this.TxtPlaca.getText()))
+        {
+            //retorna la ultima bitacora encontrada
+            bitacora =  cb.buscar( new Bitacora( this.TxtPlaca.getText() ) );
+            
+            if(bitacora != null ){
+            
+                vehiculo.setPlaca(this.TxtPlaca.getText());
+                if (!cv.ValidarPK(vehiculo)) 
+                {
+                    this.TxtDescripcion.setText(cv.buscar(vehiculo.getPlaca()).getDescripcion());
                 
-                this.TxtDescripcion.setText(cv.buscar(vehiculo.getPlaca()).getDescripcion());
-                
+                }
+        
+                this.TxtDestino.setText(bitacora.getDestino());
+                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaString = sdf.format(bitacora.getFechasalida());
+                this.TxtFechaSalida.setText(fechaString);
+
+                this.TxtHoraSalida.setText(bitacora.getHorasalida().toString());
+                this.jComboBox1.addItem(bitacora.getProvincia());
+                this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
+            
+            }else{
+                JOptionPane.showMessageDialog(this, "bitacora no encontrada");
             }
-        
-            this.TxtDestino.setText(bitacora.getDestino());
-
-            SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-            String fechaString = sdf.format(bitacora.getFechasalida());
-            this.TxtFechaSalida.setText(fechaString);
-
-            this.TxtHoraSalida.setText(bitacora.getHorasalida().toString());
-            this.jComboBox1.addItem(bitacora.getProvincia());
-            this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
+            
+            
+            
         }else{
             JOptionPane.showMessageDialog(this, "Rellene el campo de placa");
         }    
     }//GEN-LAST:event_BtnCargarActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
-        bitacora =  cb.buscar( new Bitacora( this.TxtPlaca.getText() ) );
-        
-        System.out.println("la placa es: "+bitacora.getPlaca());
-        System.out.println("la provincia es: "+bitacora.getProvincia());
+      
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
