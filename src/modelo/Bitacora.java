@@ -52,14 +52,14 @@ public class Bitacora {
 
     public Bitacora(String placa) {
         this.placa = placa;
-        provincia = null;
-        destino = null;
-        fechasalida = null;
-        horasalida = null;
-        kinicial = 0;
-        fechallegada = null;
-        horallegada = null;
-        kfinal = 0;
+        this.provincia = null;
+        this.destino = null;
+        this.fechasalida = null;
+        this.horasalida = null;
+        this.kinicial = 0;
+        this.fechallegada = null;
+        this.horallegada = null;
+        this.kfinal = 0;
     }
     
     public boolean comprobar(){
@@ -143,4 +143,8 @@ public class Bitacora {
         }else{System.out.println("el kilometraje final es menor al inicial");}
     }
 
+    
+    
+    
+    
 }

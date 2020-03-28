@@ -302,6 +302,10 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnCargarActionPerformed
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        bitacora =  cb.buscar( new Bitacora( this.TxtPlaca.getText() ) );
+        
+        System.out.println("la placa es: "+bitacora.getPlaca());
+        System.out.println("la provincia es: "+bitacora.getProvincia());
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
 
