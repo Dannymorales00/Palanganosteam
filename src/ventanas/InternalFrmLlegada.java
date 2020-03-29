@@ -284,7 +284,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
             //retorna la ultima bitacora encontrada o null
             bitacora =  cb.buscar( new Bitacora( this.TxtPlaca.getText() ) );
             
-            if(bitacora != null ){
+            if(bitacora != null && !cb.ValidarPK(bitacora) ){
             
                 vehiculo.setPlaca(this.TxtPlaca.getText());
                 if (!cv.ValidarPK(vehiculo)) 
@@ -303,7 +303,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
                 this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
             
             }else{
-                JOptionPane.showMessageDialog(this, "bitacora no encontrada");
+                JOptionPane.showMessageDialog(this, "mo se encuentra una bitacora de salida aciva");
             }
             
             
