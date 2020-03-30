@@ -7,8 +7,11 @@ package ventanas;
 
 import controlador.ControladorBitacora;
 import controlador.ControladorVehiculo;
+import java.beans.PropertyVetoException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import modelo.Bitacora;
 import modelo.Vehiculo;
@@ -228,6 +231,11 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         });
 
         BtnCancelar.setText("Cancelar");
+        BtnCancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCancelarActionPerformed(evt);
+            }
+        });
 
         BtnCargar.setText("Cargar");
         BtnCargar.addActionListener(new java.awt.event.ActionListener() {
@@ -330,6 +338,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
                 this.TxtHoraSalida.setText("");
                 this.jComboBox1.addItem("");
                 this.txtKilometrajeInicial.setText("");
+                this.SpinnerFinal.setValue(0);
                 JOptionPane.showMessageDialog(this, "Se actualizo la bitacora exitosamente");
             
             }else{
@@ -346,6 +355,16 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         
         
     }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    private void BtnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCancelarActionPerformed
+        try {
+            this.setClosed(true);
+        } catch (PropertyVetoException ex) {
+            Logger.getLogger(InternalFrmSalida.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_BtnCancelarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
