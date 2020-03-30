@@ -7,6 +7,7 @@ package modelo;
 
 import java.sql.Date;
 import java.sql.Time;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -138,16 +139,17 @@ public class Bitacora {
     }
 
     public void setKfinal(int kfinal) {
-        if(this.kfinal>this.kinicial){
+        
+        if(kfinal>this.kinicial){
             
             this.kfinal = kfinal;
             
         }else{
-            System.out.println("valor kinicial: "+this.kinicial);
-            System.out.println("el kilometraje final es menor al inicial");}
-    }
+      
+            JOptionPane.showMessageDialog(null, "El kilometraje final no pude ser menor que el inicial");
+        }
 
-    
+    }
     
     
     

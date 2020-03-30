@@ -132,11 +132,12 @@ public class ControladorBitacora {
     
     
     public boolean actualizar(Bitacora bitacora){
-            try {  
+        
+        try {  
               
-            this.sentencias.executeUpdate("UPDATE bitacora SET fechallegada=CURDATE(),horallegada=CURTIME(),kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"';");
-              
+            this.sentencias.executeUpdate("UPDATE bitacora SET fechallegada=CURDATE(),horallegada=CURTIME(),kfinal='"+bitacora.getKfinal()+"' WHERE placa ='"+bitacora.getPlaca()+"' AND kfinal IS NULL ;");
             return true;
+            
         } catch (SQLException ex) {
             System.out.println("Error al actualizar");
         }
@@ -168,23 +169,45 @@ public class ControladorBitacora {
         
         
     public boolean ValidarPK(Bitacora bitacora){
+        Bitacora bitacora2;
         
-        try {
-            this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+bitacora.getPlaca());
-                
-            if (datos.next()) {
-                
-                if(datos.getInt(10)== 0 && datos.getTime(9)== null && datos.getDate(8)== null){
+        if( buscar(bitacora)!=null)
+          {
+               bitacora2=buscar(bitacora);
+               if(bitacora2.getKfinal()== 0 && bitacora2.getHorallegada()== null && bitacora2.getFechallegada()== null){
+                    
+                    
                     System.out.println("se encontro una bitacora con valores nulos");
                     return false;
                 }
-                
-            
-            }
-                
-        } catch (SQLException ex) {
-            System.out.println("Error al validar");
-        }
+          
+          
+          }
+//        try {
+//            this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+bitacora.getPlaca());
+//                
+//            if (datos.next()) {
+//
+//                System.out.println("daros:...: "+datos.getString(4));
+//                
+//                if(datos.getInt(10)== 0 && datos.getTime(9)== null && datos.getDate(8)== null){
+//                    System.out.println("");
+//                    
+//                    System.out.println("se encontro una bitacora con valores nulos");
+//                    return false;
+//                }
+//                
+//            
+//            }
+//                
+//        } catch (SQLException ex) {
+//            System.out.println("Error al validar");
+//        }
+
+
+
+
+
         return true;
     } 
         
@@ -203,7 +226,7 @@ public class ControladorBitacora {
             }
                 
         } catch (SQLException ex){
-            System.out.println("Error al validar");
+            System.out.println("Error al validarFK");
             
         }
          

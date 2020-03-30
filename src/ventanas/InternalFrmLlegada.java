@@ -283,8 +283,8 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         {
             //retorna la ultima bitacora encontrada o null
             bitacora =  cb.buscar( new Bitacora( this.TxtPlaca.getText() ) );
-            
-            if(bitacora != null && !cb.ValidarPK(bitacora) ){
+           
+            if(bitacora != null && !(cb.ValidarPK(bitacora)) ){
             
                 vehiculo.setPlaca(this.TxtPlaca.getText());
                 if (!cv.ValidarPK(vehiculo)) 
@@ -303,7 +303,8 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
                 this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
             
             }else{
-                JOptionPane.showMessageDialog(this, "mo se encuentra una bitacora de salida aciva");
+                JOptionPane.showMessageDialog(this, "No se encuentra una bitacora de salida activa para ese vehiculo");
+                bitacora=null;
             }
             
             
@@ -315,15 +316,32 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
       
-        if((int)this.SpinnerFinal.getValue()>0)
+        if( bitacora!=null && (int)this.SpinnerFinal.getValue()>bitacora.getKinicial() )
         {
-         
+       
             bitacora.setKfinal((int)this.SpinnerFinal.getValue());
-            cb.actualizar(bitacora);
+           
+            if(cb.actualizar(bitacora)){
+                bitacora=null;
+                this.TxtPlaca.setText("");
+                this.TxtDescripcion.setText("");
+                this.TxtDestino.setText("");
+                this.TxtFechaSalida.setText("");
+                this.TxtHoraSalida.setText("");
+                this.jComboBox1.addItem("");
+                this.txtKilometrajeInicial.setText("");
+                JOptionPane.showMessageDialog(this, "Se actualizo la bitacora exitosamente");
+            
+            }else{
+                 JOptionPane.showMessageDialog(this, "No se pudo actualizar la bitacora");
+            }
+            
         
         
-        
-        
+        }else{
+            if(bitacora==null){
+            JOptionPane.showMessageDialog(this, "No se encuentra una bitacora de salida cargada");
+            }else{ JOptionPane.showMessageDialog(this, "El kfinal debe ser mayor que el k inicial");}
         }
         
         

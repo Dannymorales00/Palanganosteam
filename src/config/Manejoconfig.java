@@ -5,6 +5,9 @@
  */
 package config;
 import java.io.File;
+import java.io.IOException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import org.ini4j.*;
 import ventanas.FrmConfiguracion;
 /**
@@ -15,6 +18,7 @@ public class Manejoconfig {
  /**
  *lee el archivo config.ini y
  * retorna un vector ==> motor-basededatos-servidor-usuario-contraseña
+     * @return 
  */
     
     public String[] leer() {
@@ -49,17 +53,40 @@ public class Manejoconfig {
             vect[4]= contraseña;
             return vect;
 
-        // Para atrapar cual excepción relacionada a encontrar el archivo 
-        }catch(Exception e){
-            System.out.println("error al leer el archivo config.ini");
+        // Para atrapar excepciones
+        }catch(StringIndexOutOfBoundsException e){
+            
+          
+          
+            System.out.println("No se pudo convertir la ruta a String");
+            System.out.println(e);
+            
+          
             FrmConfiguracion frmconfig = new FrmConfiguracion();
             frmconfig.setVisible(true);
             frmconfig.setAlwaysOnTop(true);
-            System.err.println(e.getMessage());
-            return null;
-        }
-  
-    
+            
+            
+            
+        } catch (IOException e) {
+            System.out.println("Error al crear el archivo wini");
+            System.out.println("verifique que tenga instalado la libreria correspondiente");
+            
+            
+        }catch(Exception e){
+            
+            System.out.println("error al leer el archivo config.ini ubicado en los recursos ");
+            
+            FrmConfiguracion frmconfig = new FrmConfiguracion();
+            frmconfig.setVisible(true);
+            frmconfig.setAlwaysOnTop(true);
+            
+        }            
+        
+        
+        return null;
+            
+            
     }
     
     
@@ -67,7 +94,7 @@ public class Manejoconfig {
         String vect[]=new String[5];
     
         try{
-             //obtenemos la ubicacion del archivo y quitamos los caracteres del inicio inecesarios.
+            
             
              System.out.println("ruta al leer:"+ruta);
             
@@ -95,11 +122,35 @@ public class Manejoconfig {
             vect[4]= contraseña;
             return vect;
 
-        // Para atrapar cual excepción relacionada a encontrar el archivo 
+
+            
+            
+            
+                // Para atrapar excepciones
+        }catch (IOException e) {
+            System.out.println("Error al crear el archivo wini");
+            System.out.println("verifique que tenga instalado la libreria correspondiente");
+            FrmConfiguracion frmconfig = new FrmConfiguracion();
+            frmconfig.setVisible(true);
+            frmconfig.setAlwaysOnTop(true);
+            
+            
         }catch(Exception e){
-            System.out.println("error al leer el archivo config.ini");
-            System.err.println(e.getMessage());
-        }
+            
+            System.out.println("error al leer el archivo config.ini ubicado en los recursos ");
+            
+            FrmConfiguracion frmconfig = new FrmConfiguracion();
+            frmconfig.setVisible(true);
+            frmconfig.setAlwaysOnTop(true);
+            
+        }     
+            
+            
+            
+            
+            
+            
+            
         return null;
     
     }   

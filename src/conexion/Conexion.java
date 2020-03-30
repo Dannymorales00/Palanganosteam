@@ -81,7 +81,7 @@ public class Conexion {
             } catch (SQLException e) {
             
                 System.out.println("no se conecto la madre");
-                System.out.println(e);
+                //System.out.println(e);
                 FrmConfiguracion frmconfig= new FrmConfiguracion();
                 frmconfig.setVisible(true);
             } 

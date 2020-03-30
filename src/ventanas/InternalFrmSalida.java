@@ -311,11 +311,11 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                    
                     if( cb.ValidarPK(bitacora) && cb.añadir(bitacora))
                     {
-                      JOptionPane.showMessageDialog(this, "Vehiculo agregado");
+                      JOptionPane.showMessageDialog(this, "Bitacora agregada");
                       
                     }else{ JOptionPane.showMessageDialog(this, "No puede tener 2 salidas activas");}
                     
-                }else{  JOptionPane.showMessageDialog(this, "No existe ese vehiculo");}
+                }else{  JOptionPane.showMessageDialog(this, "No se puede agregar una bitacora a un vehiculo inexistente");}
              
         }else{
          
