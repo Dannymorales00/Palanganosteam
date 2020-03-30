@@ -82,12 +82,14 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         jLabel2.setText("Descripción");
 
         TxtLlegada.setEditable(false);
+        TxtLlegada.setText("Automatico");
 
         jLabel8.setText("Fecha Llegada");
 
         jLabel9.setText("Hora Llegada");
 
         txtHoraLlegada.setEditable(false);
+        txtHoraLlegada.setText("Automatico");
 
         jLabel10.setText("Kilomatraje Final");
 

@@ -163,12 +163,14 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 
         fechaSalidatxt.setEditable(false);
         fechaSalidatxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        fechaSalidatxt.setText("Automatico");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel5.setText("Fecha Salida:");
 
         horaSalidaTxt.setEditable(false);
         horaSalidaTxt.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        horaSalidaTxt.setText("Automatico");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         jLabel6.setText("Hora Salida:");
