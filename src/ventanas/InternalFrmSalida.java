@@ -25,10 +25,12 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     /**
      * Creates new form InternalFrmSalida
      */
-    private    Bitacora bitacora;
+    private Bitacora bitacora;
     private ControladorBitacora cb= new ControladorBitacora();
     Vehiculo vehiclo;    
     ControladorVehiculo cv;
+    
+    
     public InternalFrmSalida() {
         this.vehiclo = new Vehiculo();
         cv = new ControladorVehiculo();
@@ -297,16 +299,16 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
        
-        
-        if(!this.descripcionTxt.equals("") && !this.placaTxt.equals("") && !this.destinoTxt.equals("") && !this.provinciaCb.equals("") && !this.kilometrajeSp.equals(""))
-        {
-          
             bitacora= new Bitacora();
             bitacora.setPlaca(this.placaTxt.getText());
             bitacora.setDestino(this.destinoTxt.getText());
             bitacora.setProvincia(String.valueOf( this.provinciaCb.getSelectedItem()));
             bitacora.setKinicial((int) this.kilometrajeSp.getValue());
-               
+        
+            System.out.println("comprobacion:"+bitacora.comprobar());
+        if(bitacora.comprobar())
+        {
+     
                 if(cb.ValidarFK(bitacora))
                 {
                    

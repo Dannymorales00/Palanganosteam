@@ -65,9 +65,9 @@ public class Bitacora {
     
     public boolean comprobar(){
         
-        return this.placa!=null && this.provincia!=null && this.kinicial>=0 && 
-               this.horasalida!=null && this.horallegada!=null && this.fechasalida
-               !=null && this.destino!=null ;
+
+        return !this.placa.equals("") && !this.provincia.equals("") && this.kinicial>=0 && !this.destino.equals("") ;
+        
     }
 
     public void setPlaca(String placa) {

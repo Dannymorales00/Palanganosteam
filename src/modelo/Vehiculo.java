@@ -38,10 +38,7 @@ public class Vehiculo {
     
     
     
-    
-    
-    
-    
+
     //metodos de acceso
     public String getPlaca() {
         return placa;

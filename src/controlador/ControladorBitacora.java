@@ -183,30 +183,6 @@ public class ControladorBitacora {
           
           
           }
-//        try {
-//            this.datos = this.sentencias.executeQuery("select * from bitacora where placa="+bitacora.getPlaca());
-//                
-//            if (datos.next()) {
-//
-//                System.out.println("daros:...: "+datos.getString(4));
-//                
-//                if(datos.getInt(10)== 0 && datos.getTime(9)== null && datos.getDate(8)== null){
-//                    System.out.println("");
-//                    
-//                    System.out.println("se encontro una bitacora con valores nulos");
-//                    return false;
-//                }
-//                
-//            
-//            }
-//                
-//        } catch (SQLException ex) {
-//            System.out.println("Error al validar");
-//        }
-
-
-
-
 
         return true;
     } 
