@@ -58,8 +58,11 @@ public class Manejoconfig {
             
           
           
-            System.out.println("No se pudo convertir la ruta a String");
-            System.out.println(e);
+          
+            System.out.println("No se encrontro el archivo en la ruta");
+            System.out.println("verifique la libreria necesaria para la conexion");
+            System.out.println("Intente crear de nuevo el archivo config");
+            
             
           
             FrmConfiguracion frmconfig = new FrmConfiguracion();

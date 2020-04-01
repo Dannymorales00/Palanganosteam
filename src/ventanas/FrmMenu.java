@@ -15,7 +15,7 @@ public class FrmMenu extends javax.swing.JFrame {
     private FrmConfiguracion frmconfig;
     private InternalFrmVehiculo interFrmvehiculo;
     private InternalFrmLlegada internalFrmLlegada; 
-     private InternalFrmSalida internalFrmSalida; 
+    private InternalFrmSalida internalFrmSalida; 
     private static Conexion conexion = new Conexion();
     /**
      * Creates new form FrmMenu
