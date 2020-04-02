@@ -12,6 +12,7 @@ import java.beans.PropertyVetoException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JSpinner;
 import modelo.Bitacora;
 import modelo.Vehiculo;
 
@@ -27,18 +28,43 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
      */
     private Bitacora bitacora;
     private ControladorBitacora cb= new ControladorBitacora();
-    Vehiculo vehiclo;    
-    ControladorVehiculo cv;
+    private Vehiculo vehiclo;    
+    private ControladorVehiculo cv;
+    private boolean cargado;
     
     
     public InternalFrmSalida() {
         this.vehiclo = new Vehiculo();
         cv = new ControladorVehiculo();
+        bitacora = new Bitacora();
+        cargado=false;
         initComponents();
-        
-        
-        
+
     
+        
+    }
+    
+    
+    
+    public void Inicializarcarga() {
+        
+        if( cb.buscar(bitacora)!=null && cb.ValidarPK(bitacora))
+        {
+            
+            descripcionTxt.setEditable(true);
+            descripcionTxt.setText(cv.buscar(vehiclo.getPlaca()).getDescripcion());
+            descripcionTxt.setEditable(false);
+            
+            
+            Bitacora ultimabitacora = cb.buscar(bitacora);
+            
+           
+            this.kilometrajeSp.setEditor(new JSpinner.DefaultEditor(this.kilometrajeSp));
+            this.kilometrajeSp.setValue(ultimabitacora.getKfinal());
+
+      
+        }else{JOptionPane.showMessageDialog(this, "No puede cargar el vehiculo porque hay una salida activa");  }
+            
         
     }
 
@@ -58,7 +84,7 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descripcionTxt = new javax.swing.JTextArea();
-        BtnBuscar = new javax.swing.JButton();
+        BtnCargar = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jLabel3 = new javax.swing.JLabel();
         provinciaCb = new javax.swing.JComboBox<>();
@@ -101,11 +127,11 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         descripcionTxt.setRows(5);
         jScrollPane1.setViewportView(descripcionTxt);
 
-        BtnBuscar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        BtnBuscar.setText("Buscar");
-        BtnBuscar.addActionListener(new java.awt.event.ActionListener() {
+        BtnCargar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        BtnCargar.setText("Cargar");
+        BtnCargar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnBuscarActionPerformed(evt);
+                BtnCargarActionPerformed(evt);
             }
         });
 
@@ -114,28 +140,27 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGap(14, 14, 14)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel1)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(BtnBuscar)))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jScrollPane1)
-                    .addComponent(placaTxt))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(placaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(BtnCargar))
+                    .addComponent(jScrollPane1))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(22, 22, 22)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
-                    .addComponent(placaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(placaTxt, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(BtnCargar))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel2Layout.createSequentialGroup()
@@ -143,9 +168,7 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addComponent(jLabel2)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(BtnBuscar)
-                        .addGap(21, 21, 21))))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -196,10 +219,9 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                         .addGap(18, 18, 18)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(horaSalidaTxt)
-                            .addComponent(provinciaCb, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(destinoTxt)
-                            .addComponent(fechaSalidatxt))
-                        .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(fechaSalidatxt)
+                            .addComponent(provinciaCb, 0, 166, Short.MAX_VALUE)
+                            .addComponent(destinoTxt)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addGap(18, 18, 18)
@@ -253,27 +275,29 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
-                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(194, 194, 194)
+                        .addGap(115, 115, 115)
                         .addComponent(BtnGuardar)
-                        .addGap(27, 27, 27)
-                        .addComponent(BtnCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGap(18, 18, 18)
+                        .addComponent(BtnCancelar)
+                        .addContainerGap(23, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(BtnCancelar)
                     .addComponent(BtnGuardar))
                 .addContainerGap())
@@ -301,14 +325,17 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
 
     private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
        
-            bitacora= new Bitacora();
-            bitacora.setPlaca(this.placaTxt.getText());
-            bitacora.setDestino(this.destinoTxt.getText());
-            bitacora.setProvincia(String.valueOf( this.provinciaCb.getSelectedItem()));
-            bitacora.setKinicial((int) this.kilometrajeSp.getValue());
-        
-            System.out.println("comprobacion:"+bitacora.comprobar());
-        if(bitacora.comprobar())
+          
+
+        bitacora.setPlaca(placaTxt.getText());        
+        bitacora.setDestino(this.destinoTxt.getText());
+        bitacora.setProvincia(String.valueOf( this.provinciaCb.getSelectedItem()));
+        bitacora.setKinicial((int)this.kilometrajeSp.getValue());
+            
+            
+            
+
+        if(bitacora.comprobar() && cargado)
         {
      
                 if(cb.ValidarFK(bitacora))
@@ -316,15 +343,18 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
                    
                     if( cb.ValidarPK(bitacora) && cb.añadir(bitacora))
                     {
+                        
                       JOptionPane.showMessageDialog(this, "Bitacora agregada");
-                      
-                    }else{ JOptionPane.showMessageDialog(this, "No puede tener 2 salidas activas");}
+                      bitacora=null;
+                      cargado=false;
+                      limpiar();
+                    }
                     
                 }else{  JOptionPane.showMessageDialog(this, "No se puede agregar una bitacora a un vehiculo inexistente");}
              
         }else{
          
-              JOptionPane.showMessageDialog(this, "Campos requeridos vacíos");
+              JOptionPane.showMessageDialog(this, "Debe carga un vehiculo y rellenar el resto de campos");
         }
         
         
@@ -342,31 +372,50 @@ public class InternalFrmSalida extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
     private void placaTxtKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_placaTxtKeyTyped
-        // TODO add your handling code here:
+
     }//GEN-LAST:event_placaTxtKeyTyped
 
     private void placaTxtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_placaTxtKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_placaTxtKeyPressed
 
-    private void BtnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBuscarActionPerformed
+    private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
         if (!"".equals(placaTxt.getText())) {
             vehiclo.setPlaca(placaTxt.getText());
+      
             if (!cv.ValidarPK(vehiclo)) {
-                descripcionTxt.setEditable(true);
-                descripcionTxt.setText(cv.buscar(vehiclo.getPlaca()).getDescripcion());
-                descripcionTxt.setEditable(false);
+                bitacora= new Bitacora();
+                bitacora.setPlaca(placaTxt.getText());
+                Inicializarcarga();
+                cargado=true;
+            
+            }else{
+                JOptionPane.showMessageDialog(this, "Vehiculo no encontrado");
+                cargado=false;
             }
+     
+            
         }else{
             JOptionPane.showMessageDialog(this, "Rellene el campo de placa");
         }
         
-    }//GEN-LAST:event_BtnBuscarActionPerformed
+    }//GEN-LAST:event_BtnCargarActionPerformed
 
 
+    public void limpiar() {
+        this.descripcionTxt.setText("");
+        this.destinoTxt.setText("");
+        this.kilometrajeSp.setValue(0);
+        this.placaTxt.setText("");
+        this.provinciaCb.setSelectedIndex(0);
+                
+    }
+    
+    
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton BtnBuscar;
     private javax.swing.JButton BtnCancelar;
+    private javax.swing.JButton BtnCargar;
     private javax.swing.JButton BtnGuardar;
     private javax.swing.JTextArea descripcionTxt;
     private javax.swing.JTextField destinoTxt;

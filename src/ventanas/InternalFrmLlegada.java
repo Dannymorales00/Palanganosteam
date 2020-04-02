@@ -152,7 +152,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Provincia");
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Provincia...", "San Jose", "Guanacaste", "Cartago", "Limon", "Puntarenas", "Heredia", "Alajuela" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Seleccione una Provincia...", "San José", "Guanacaste", "Cartago", "Limon", "Puntarenas", "Heredia", "Alajuela" }));
 
         jLabel4.setText("Destino");
 
@@ -304,12 +304,12 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
                 }
         
                 this.TxtDestino.setText(bitacora.getDestino());
-                SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-                String fechaString = sdf.format(bitacora.getFechasalida());
+                SimpleDateFormat f = new SimpleDateFormat("dd/MM/yyyy");
+                String fechaString = f.format(bitacora.getFechasalida());
                 this.TxtFechaSalida.setText(fechaString);
 
                 this.TxtHoraSalida.setText(bitacora.getHorasalida().toString());
-                this.jComboBox1.addItem(bitacora.getProvincia());
+                this.jComboBox1.setSelectedItem(bitacora.getProvincia());
                 this.txtKilometrajeInicial.setText(String.valueOf(bitacora.getKinicial()));
             
             }else{
@@ -333,14 +333,7 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
            
             if(cb.actualizar(bitacora)){
                 bitacora=null;
-                this.TxtPlaca.setText("");
-                this.TxtDescripcion.setText("");
-                this.TxtDestino.setText("");
-                this.TxtFechaSalida.setText("");
-                this.TxtHoraSalida.setText("");
-                this.jComboBox1.addItem("");
-                this.txtKilometrajeInicial.setText("");
-                this.SpinnerFinal.setValue(0);
+                limpiar();
                 JOptionPane.showMessageDialog(this, "Se actualizo la bitacora exitosamente");
             
             }else{
@@ -368,6 +361,19 @@ public class InternalFrmLlegada extends javax.swing.JInternalFrame {
         
     }//GEN-LAST:event_BtnCancelarActionPerformed
 
+    
+    public void limpiar() {
+          
+       
+        this.TxtPlaca.setText("");
+        this.TxtDescripcion.setText("");
+        this.TxtDestino.setText("");
+        this.TxtFechaSalida.setText("");
+        this.TxtHoraSalida.setText("");
+        this.jComboBox1.setSelectedIndex(0);
+        this.txtKilometrajeInicial.setText("");
+        this.SpinnerFinal.setValue(0);
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton BtnCancelar;

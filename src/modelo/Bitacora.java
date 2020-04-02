@@ -66,7 +66,7 @@ public class Bitacora {
     public boolean comprobar(){
         
 
-        return !this.placa.equals("") && !this.provincia.equals("") && this.kinicial>=0 && !this.destino.equals("") ;
+        return !this.placa.equals("") && !this.provincia.equals("Seleccionar Provincia") && this.kinicial>=0 && !this.destino.equals("") ;
         
     }
 
